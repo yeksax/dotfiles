@@ -6,7 +6,7 @@ BASE_DIR=$PWD
 sudo cp ./pacman.conf /etc/pacman.conf
 
 # installs packages, a lot of them
-sudo pacman -Syyu --noconfirm --needed git base-devel neovim zsh feh chromium dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi github-cli noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation vlc playerctl pwgen ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip materia-gtk-theme papirus-icon-theme lxappearance
+sudo pacman -Syyu --noconfirm --needed git base-devel neovim vim zsh feh chromium dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi github-cli noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation vlc playerctl pwgen ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip materia-gtk-theme papirus-icon-theme lxappearance
 
 # installs yay
 git clone https://aur.archlinux.org/yay-bin.git
