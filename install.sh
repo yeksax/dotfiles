@@ -52,4 +52,4 @@ echo "Tudo pronto :)"
 read -s -n 1 -p "Aperte qualquer tecla para entrar em seu i3 novinho"
 
 # bye bye :)
-sudo systemctl start lightdm.service
+# sudo systemctl start lightdm.service
