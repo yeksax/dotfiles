@@ -12,11 +12,24 @@ sudo pacman -Syyu --noconfirm --needed git base-devel neovim vim zsh feh chromiu
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
 makepkg -si --noconfirm
-yay -Y --gendb
 cd $BASE_DIR
 
-# installs gnome terminal (with transparency) and rofi-greenclip
-yay -S --noprovides --answerclean All --answerdiff None --mflags "--noconfirm --needed --clean" rofi-greenclip gnome-terminal-transparency zscroll-git
+# installing gnome-terminal-transparency
+git clone https://aur.archlinux.org/gnome-terminal-transparency.git
+cd gnome-terminal-transparency
+makepkg -si --noconfirm
+cd $BASE_DIR
+
+# installing zscroll-git
+git clone https://aur.archlinux.org/zscroll-git.git
+cd zscroll-git
+makepkg -si --noconfirm
+cd $BASE_DIR
+
+# installing greenclip
+wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip
+chmod +x greenclip
+sudo mv greenclip /usr/bin
 
 # installs packer.nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim.git
@@ -29,6 +42,7 @@ sudo systemctl enable lightdm.service
 cd ~
 mkdir -p videos documents pictures downloads .fonts .config
 
+# deletes conflicting directories
 rm -rf .zshrc
 
 cd ~/.config
