@@ -19,7 +19,7 @@ cd $BASE_DIR
 yay -S --noprovides --answerclean All --answerdiff None --mflags "--noconfirm --needed --clean" rofi-greenclip gnome-terminal-transparency zscroll-git
 
 # installs packer.nvim
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+git clone --depth 1 https://github.com/wbthomason/packer.nvim.git
 ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # enables lightdm
