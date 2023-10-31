@@ -16,7 +16,7 @@ yay -Y --gendb
 cd $BASE_DIR
 
 # installs gnome terminal (with transparency) and rofi-greenclip
-yes | yay -S --noprovides --answerclean All --answerdiff None --mflags "--noconfirm --needed --clean" rofi-greenclip gnome-terminal-transparency zscroll-git
+yay -S --noprovides --answerclean All --answerdiff None --mflags "--noconfirm --needed --clean" rofi-greenclip gnome-terminal-transparency zscroll-git
 
 # installs packer.nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
