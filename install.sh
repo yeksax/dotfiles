@@ -31,13 +31,13 @@ mkdir -p themes videos documents pictures downloads wallpapers .fonts .config
 
 # symlinks configs, wallpapers, configs, fonts and etc
 cd $BASE_DIR
-ln -s ./wallpapers/* ~/wallpapers/
-ln -s ./themes/* ~/themes/
-ln -s ./.config/* ~/.config/
-ln -s ./.fonts/* ~/.fonts/
+ln -sf ./wallpapers/* ~/wallpapers/
+ln -sf ./themes/* ~/themes/
+ln -sf ./.config/* ~/.config/
+ln -sf ./.fonts/* ~/.fonts/
 
-ln -s ./gitconfig ~/.gitconfig
-ln -s ./zshrc ~/.zshrc
+ln -sf ./gitconfig ~/.gitconfig
+ln -sf ./zshrc ~/.zshrc
 
 # sets zsh as default
 sudo chsh $USER -s $(which zsh)
