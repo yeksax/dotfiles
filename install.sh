@@ -27,9 +27,12 @@ sudo systemctl enable lightdm.service
 
 # create some base directories
 cd ~
-mkdir -p themes videos documents pictures downloads wallpapers .fonts .config
+mkdir -p videos documents pictures downloads .fonts .config
+
+rm -rf .zshrc
 
 cd ~/.config
+rm -rf yay
 
 # symlinks configs, wallpapers, configs, fonts and etc
 cd $BASE_DIR
