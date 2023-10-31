@@ -34,7 +34,7 @@ cd $BASE_DIR
 ln -s ./wallpapers/* ~/wallpapers/
 ln -s ./themes/* ~/themes/
 ln -s ./.config/* ~/.config/
-ln -s ./.fonts/* ~/.fonts
+ln -s ./.fonts/* ~/.fonts/
 
 ln -s ./gitconfig ~/.gitconfig
 ln -s ./zshrc ~/.zshrc
