@@ -6,24 +6,24 @@ BASE_DIR=$PWD
 sudo cp ./pacman.conf /etc/pacman.conf
 
 # installs packages, a lot of them
-sudo pacman -Syyu --noconfirm --needed git base-devel neovim vim zsh feh chromium dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi github-cli noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation vlc playerctl pwgen ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip materia-gtk-theme papirus-icon-theme lxappearance
+sudo pacman -Syyu --noconfirm --needed git base-devel wget neovim vim zsh feh chromium dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi github-cli noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation vlc playerctl pwgen ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip materia-gtk-theme papirus-icon-theme lxappearance
 
 # installs yay
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
-makepkg -si --noconfirm
+makepkg -si --noconfirm -clean
 cd $BASE_DIR
 
 # installing gnome-terminal-transparency
 git clone https://aur.archlinux.org/gnome-terminal-transparency.git
 cd gnome-terminal-transparency
-makepkg -si --noconfirm
+makepkg -si --noconfirm -clean
 cd $BASE_DIR
 
 # installing zscroll-git
 git clone https://aur.archlinux.org/zscroll-git.git
 cd zscroll-git
-makepkg -si --noconfirm
+makepkg -si --noconfirm -clean
 cd $BASE_DIR
 
 # installing greenclip
@@ -32,6 +32,7 @@ chmod +x greenclip
 sudo mv greenclip /usr/bin
 
 # installs packer.nvim
+mkdir -p ~/.local/share/nvim/site/pack/packer/start
 git clone --depth 1 https://github.com/wbthomason/packer.nvim.git
 ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
