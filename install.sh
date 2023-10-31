@@ -30,24 +30,11 @@ cd ~
 mkdir -p themes videos documents pictures downloads wallpapers .fonts .config
 
 cd ~/.config
-rm -rf i3
-rm -rf polybar
-rm -rf rofi
-rm -rf yay
-rm -rf nvim
-rm -rf dconf
-rm -rf gtk-3.0
-rm -rf picom
 
 # symlinks configs, wallpapers, configs, fonts and etc
 cd $BASE_DIR
-ln -sf ./wallpapers/* ~/wallpapers/
-ln -sf ./.config/* ~/.config/
-ln -sf ./.fonts/* ~/.fonts/
-ln -sf ./themes/* ~/themes/
-
-ln -sf ./gitconfig ~/.gitconfig
-ln -sf ./zshrc ~/.zshrc
+ln -sf $(pwd)/.config/* ~/.config/
+ln -sf $(pwd)/home/* ~/
 
 # sets zsh as default
 sudo chsh $USER -s $(which zsh)
