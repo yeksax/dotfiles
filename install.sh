@@ -42,6 +42,9 @@ ln -s ./zshrc ~/.zshrc
 # sets zsh as default
 sudo chsh $USER -s $(which zsh)
 
+# for screen brightness control
+sudo chmod +s $(which light)
+
 echo ""
 echo ""
 echo ""
