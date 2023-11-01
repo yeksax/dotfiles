@@ -2,8 +2,12 @@
 
 BASE_DIR=$PWD
 
-# sets pacman.conf to improve downloads (parallel downloads and color)
-sudo cp ./pacman.conf /etc/pacman.conf
+# remove original files and link
+sudo rm -f /etc/pacman.conf
+sudo rm -f /etc/systemd/logind.conf
+
+sudo ln -s $(pwd)/system/pacman.conf /etc/pacman.conf
+sudo ln -s $(pwd)/system/logind.conf /etc/systemd/logind.conf
 
 # installs packages, a lot of them
 sudo pacman -Syyu --noconfirm --needed git base-devel tldr wget neovim vim zsh feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation playerctl pwgen ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip terminator xclip

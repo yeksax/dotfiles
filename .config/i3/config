@@ -186,8 +186,8 @@ assign [class="Spotify"] $ws3
 assign [class="VirtualBox Machine"] $ws4
 
 # laptop settins
-exec xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Tapping Enabled" 1
-exec xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Natural Scrolling Enabled" 1
+exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Tapping Enabled" 1
+exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Natural Scrolling Enabled" 1
 
 
 
