@@ -6,7 +6,7 @@ BASE_DIR=$PWD
 sudo cp ./pacman.conf /etc/pacman.conf
 
 # installs packages, a lot of them
-sudo pacman -Syyu --noconfirm --needed gnome-terminal git base-devel wget neovim vim zsh feh chromium dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi github-cli noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation vlc playerctl pwgen ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip materia-gtk-theme papirus-icon-theme lxappearance
+sudo pacman -Syyu --noconfirm --needed git base-devel tldr wget neovim vim zsh feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation playerctl pwgen ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip terminator
 
 # installs yay
 git clone https://aur.archlinux.org/yay-bin.git
@@ -14,6 +14,7 @@ cd yay-bin
 makepkg -si --noconfirm --clean
 cd $BASE_DIR
 
+# replaced with terminator
 # installing gnome-terminal-transparency
 # git clone https://aur.archlinux.org/gnome-terminal-transparency.git
 # cd gnome-terminal-transparency

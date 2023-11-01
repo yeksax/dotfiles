@@ -139,7 +139,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # resize window (you can also use the mouse for that)
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
-    
+
     # Pressing left will shrink the window’s width.
     # Pressing right will grow the window’s width.
     # Pressing up will shrink the window’s height.
@@ -148,13 +148,13 @@ mode "resize" {
     bindsym k resize grow height 10 px or 10 ppt
     bindsym l resize shrink height 10 px or 10 ppt
     bindsym ccedilla resize grow width 10 px or 10 ppt
-    
+
     # same bindings, but for the arrow keys
     bindsym Left resize shrink width 10 px or 10 ppt
     bindsym Down resize grow height 10 px or 10 ppt
     bindsym Up resize shrink height 10 px or 10 ppt
     bindsym Right resize grow width 10 px or 10 ppt
-    
+
     # back to normal: Enter or Escape or $mod+r
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -176,20 +176,19 @@ default_border none
 # setting defaults
 exec_always picom --config ~/.config/picom/picom
 exec_always xrandr --output Virtual-1 --mode 1360x768
-exec_always feh --bg-fill "$HOME/wallpapers/mountains.png"
+exec feh --bg-fill "$HOME/wallpapers/espaco_girando.jpg"
 
 # mouse sensibility (edit last value to change)
-exec_always xinput set-prop "Logitech G403 HERO Gaming Mouse" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.5
+exec xinput set-prop "Logitech G403 HERO Gaming Mouse" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.5
 
 # workspace automove
-for_window [class="chromium"] move to workspace $ws2
-for_window [class="spotify"] move to workspace $ws3
+assign [class="Firefox"] $ws2
+assign [class="Chromium"] $ws2
+assign [class="Spotify"] $ws3
 
 # laptop settins
-exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Tapping Enabled" 1
-exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Natural Scrolling Enabled" 1
-
-
+exec xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Tapping Enabled" 1
+exec xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Natural Scrolling Enabled" 1
 
 
 
@@ -209,7 +208,7 @@ bindsym --release Ctrl+Print exec scrot -s -f -q 100 "/home/$USER/pictures/%F_%T
 bindsym --release $mod1+Sys_Req exec scrot -u -q 100 "/home/$USER/pictures/%F_%T_$wx$h.png" -e 'xclip -selection clipboard -target image/png -i $f'
 
 # media/audio control
-exec_always amixer sset Master 30%,51%
+exec amixer sset Master 30%,51%
 
 bindsym XF86AudioRaiseVolume exec "amixer sset Master 2%+,3.4%+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer sset Master 2%-,3.4%- unmute"
