@@ -52,8 +52,8 @@ sudo chsh $USER -s $(which zsh)
 
 # symlinks configs, wallpapers, configs, fonts and etc
 cd $BASE_DIR
-ln -sf $(pwd)/.config/* ~/.config/
-ln -sf $(pwd)/home/* ~/
+ln -s $(pwd)/.config/* $(pwd)/.config/.* ~/.config
+ln -s $(pwd)/home/* $(pwd)/home/.* ~/
 
 # for screen brightness control
 sudo chmod +s $(which light)
