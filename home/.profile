@@ -1,0 +1,3 @@
+export TERMINAL="terminator"
+
+
