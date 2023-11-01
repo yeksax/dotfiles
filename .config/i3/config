@@ -176,7 +176,7 @@ default_border none
 # setting defaults
 exec_always picom --config ~/.config/picom/picom
 exec_always xrandr --output Virtual-1 --mode 1360x768
-exec feh --bg-fill "$HOME/wallpapers/espaco_girando.jpg"
+exec feh --bg-fill "$HOME/wallpapers/space.jpg"
 
 # mouse sensibility (edit last value to change)
 exec xinput set-prop "Logitech G403 HERO Gaming Mouse" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.5

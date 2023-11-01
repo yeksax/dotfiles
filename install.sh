@@ -33,7 +33,7 @@ chmod +x greenclip
 sudo mv greenclip /usr/bin
 
 # installs packer.nvim
-mkdir -p ~/.local/share/nvim/site/pack/packer/start
+mkdir -p ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim.git
 ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
@@ -45,18 +45,16 @@ cd ~
 mkdir -p videos documents pictures downloads .fonts .config
 
 # deletes conflicting directories
-rm -rf .zshrc
-
 cd ~/.config
 rm -rf yay
+
+# sets zsh as default
+sudo chsh $USER -s $(which zsh)
 
 # symlinks configs, wallpapers, configs, fonts and etc
 cd $BASE_DIR
 ln -sf $(pwd)/.config/* ~/.config/
 ln -sf $(pwd)/home/* ~/
-
-# sets zsh as default
-sudo chsh $USER -s $(which zsh)
 
 # for screen brightness control
 sudo chmod +s $(which light)
