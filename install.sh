@@ -33,16 +33,15 @@ chmod +x greenclip
 sudo mv greenclip /usr/bin
 
 # installs packer.nvim
-mkdir -p ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-git clone --depth 1 https://github.com/wbthomason/packer.nvim.git
-~/.local/share/nvim/site/pack/packer/start/packer.nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # enables lightdm
 sudo systemctl enable lightdm.service
 
 # create some base directories
 cd ~
-mkdir -p videos documents pictures downloads .fonts .config
+mkdir -p videos documents pictures downloads .config
 
 # deletes conflicting directories
 cd ~/.config
