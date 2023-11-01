@@ -6,7 +6,7 @@ BASE_DIR=$PWD
 sudo cp ./pacman.conf /etc/pacman.conf
 
 # installs packages, a lot of them
-sudo pacman -Syyu --noconfirm --needed git base-devel tldr wget neovim vim zsh feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation playerctl pwgen ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip terminator
+sudo pacman -Syyu --noconfirm --needed git base-devel tldr wget neovim vim zsh feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation playerctl pwgen ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip terminator xclip
 
 # installs yay
 git clone https://aur.archlinux.org/yay-bin.git
@@ -58,11 +58,9 @@ ln -s $(pwd)/home/* $(pwd)/home/.* ~/
 # for screen brightness control
 sudo chmod +s $(which light)
 
-echo ""
-echo ""
-echo ""
-echo "Tudo pronto :)"
-read -s -n 1 -p "Aperte qualquer tecla para entrar em seu i3 novinho"
+# cleaning residual files
+rm -rf yay-bin
+rm -rf zscroll-git
 
 # bye bye :)
 sudo systemctl start lightdm.service
