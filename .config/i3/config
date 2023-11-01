@@ -183,6 +183,7 @@ exec xinput set-prop "Logitech G403 HERO Gaming Mouse" "Coordinate Transformatio
 
 # workspace automove
 assign [class="Spotify"] $ws3
+assign [class="VirtualBox Machine"] $ws4
 
 # laptop settins
 exec xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Tapping Enabled" 1
