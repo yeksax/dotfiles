@@ -11,19 +11,19 @@ sudo pacman -Syyu --noconfirm --needed git base-devel wget neovim vim zsh feh ch
 # installs yay
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
-makepkg -si --noconfirm -clean
+makepkg -si --noconfirm --clean
 cd $BASE_DIR
 
 # installing gnome-terminal-transparency
 git clone https://aur.archlinux.org/gnome-terminal-transparency.git
 cd gnome-terminal-transparency
-makepkg -si --noconfirm -clean
+makepkg -si --noconfirm --clean
 cd $BASE_DIR
 
 # installing zscroll-git
 git clone https://aur.archlinux.org/zscroll-git.git
 cd zscroll-git
-makepkg -si --noconfirm -clean
+makepkg -si --noconfirm --clean
 cd $BASE_DIR
 
 # installing greenclip
