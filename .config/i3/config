@@ -194,6 +194,12 @@ exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Natural S
 # setting shortcuts
 bindsym $mod+x exec ~/.config/i3/scripts/lock
 
+# switching workspaces
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Ctrl+Tab workspace back_and_forth
+
 # change focus between tiling / floating windows
 bindsym $mod+Space focus mode_toggle
 
