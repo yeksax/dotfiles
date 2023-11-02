@@ -109,3 +109,10 @@ source $ZSH/oh-my-zsh.sh
 
 
 
+
+# bun completions
+[ -s "/home/yeksax/.bun/_bun" ] && source "/home/yeksax/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

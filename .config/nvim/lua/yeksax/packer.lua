@@ -83,6 +83,8 @@ return require('packer').startup(function(use)
   use("folke/zen-mode.nvim")
   use("eandrju/cellular-automaton.nvim")
 
+  use('mhartington/formatter.nvim')
+
   if packer_bootstrap then
     require('packer').sync()
   end

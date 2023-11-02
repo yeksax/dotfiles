@@ -7,3 +7,5 @@
 [user]
 	email = 95363669+yeksax@users.noreply.github.com
 	name = Hugo Almeida
+[init]
+	defaultBranch = main
