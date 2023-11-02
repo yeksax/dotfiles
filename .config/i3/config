@@ -209,8 +209,8 @@ bindsym --release $mod1+Sys_Req exec scrot -u -q 100 "/home/$USER/pictures/%F_%T
 # media/audio control
 exec amixer sset Master 30%,51%
 
-bindsym XF86AudioRaiseVolume exec "amixer sset Master 2%+,3.4%+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer sset Master 2%-,3.4%- unmute"
+bindsym XF86AudioRaiseVolume exec "amixer sset Master 3.7%+,5%+ unmute"
+bindsym XF86AudioLowerVolume exec "amixer sset Master 3.7%-,5.0%- unmute"
 bindsym XF86AudioMute exec amixer sset Master toggle
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
