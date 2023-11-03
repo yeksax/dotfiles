@@ -1,6 +1,6 @@
 sudo pacman -S --needed unzip
 curl -fsSL https://bun.sh/install | bash
-source $HOME/.bashrc
+alias bun="$HOME/.bun/bin/bun"
 
 cd i3-install
 bun install
