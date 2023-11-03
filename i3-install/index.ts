@@ -1,80 +1,285 @@
-import * as p from "@clack/prompts"
-import colors from "picocolors"
-import fs from "fs"
-const { exec } = require("child_process");
+import * as p from "@clack/prompts";
+import colors from "picocolors";
+import fs from "fs/promises";
+import { execSync as exec } from "child_process";
+import { homedir, userInfo } from "os";
 
-let configurations: {
-  label: string,
-  value: string
-}[] = []
-
-fs.readdir("../.config/", {
-  withFileTypes: true
-}, (_, files) => {
-  configurations = files.map(f => ({label: f.name, value: f.name}))
-})
-
-function AURPackage(package_name: string){
-  return `${package_name} ${colors.italic(colors.dim("(AUR)"))}`
+function getIntersection<T>(a: T[], b: T[]) {
+  return a.filter((value) => b.includes(value));
 }
 
-p.intro("👋 Seja bem vindo ao script de instalação do huguinho s2")
+p.intro("👋 Seja bem vindo ao script de instalação do huguinho s2");
 
-const group = await p.group({
-  browsers: () => p.multiselect({
-    message: "Escolha quais navegadores você pretende utilizar",
-    options: [
-      { label: "Chromium", value: "chromium" },
-      { label: "Firefox", value: "firefox" },
-      { label: AURPackage("Brave"), value: "brave" },
-    ],
-    initialValues: ["chromium"],
-    required: false
-  }),
+const HOME_DIR = homedir();
 
-  text_editors: () => p.multiselect({
-    message: "Escolha seus editores de texto favoritos",
-    options: [
-      { label: "Neovim", value: "neovim" },
-      { label: AURPackage("Visual Studio Code"), value: "visual-studio-code-bin" },
-      { label: "Vim", value: "vim" },
-      { label: "Nano", value: "nano" },
-    ],
-    initialValues: ["neovim"],
-    required: false
-  }),
+if (HOME_DIR === "/root" || userInfo().uid === 0) {
+  p.cancel("Este script não pode ser executado em root");
+  process.exit(1);
+}
+const spinner = p.spinner();
 
-  media_players: () => p.multiselect({
-    message: "Escolha seus apps relacionados a mídia",
-    options: [
-      { label: "VLC Media Player", value: "vlc" },
-      { label: "OBS Studio", value: "obs-studio" },
-      ],
-    required: false
-  }),
+const AUR_MAP: Record<string, string> = {
+  spotify: "https://aur.archlinux.org/spotify.git",
+  brave: "https://aur.archlinux.org/brave.git",
+  "google-chrome": "https://aur.archlinux.org/googel-chrome.git",
+  "microsoft-edge-stable-bin":
+    "https://aur.archlinux.org/microsoft-edge-stable-bin.git",
+  "gnome-terminal-transparency":
+    "https://aur.archlinux.org/gnome-terminal-transparency.git",
+  "visual-studio-code-bin":
+    "https://aur.archlinux.org/visual-studio-code-bin.git",
+  "yay-bin": "https://aur.archlinux.org/yay-bin.git"
+};
 
-  configuration_files: async ({ results }) => p.multiselect({
-    message: "Quais arquivos de configuração você deseja copiar?",
-    options: configurations,
-    initialValues: [
-      results.text_editors!.includes("neovim") && "nvim",
-    ]
-  })
-})
+interface Directories {
+  label: string;
+  value: string;
+}
 
-exec("sudo pacman -S --noconfirm --needed git", (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
+let configurations: Directories[] = [];
+let home: Directories[] = [];
+
+configurations = (await fs.readdir(
+  "./.config/",
+  {
+    withFileTypes: true,
+  }
+)).map((f) => ({ label: f.name, value: f.name }));
+
+
+home = (await fs.readdir(
+  "./home/",
+  {
+    withFileTypes: true,
+  }
+)).map((f)=> ({ label: f.name, value: f.name }))
+
+function AURPackage(package_name: string) {
+  return `${package_name} ${colors.italic(colors.dim("(AUR)"))}`;
+}
+
+let sudo_pass: string;
+
+function sudo(command: string){
+  return `echo ${sudo_pass.toString()} | sudo -S -k ${command}`
+}
+
+const group = await p.group(
+  {
+    sudo_pass: () => p.password({
+      message: "Qual a senha para execução de comandos que requerem sudo?",
+      mask: "*"
+    }),
+
+    browsers: () =>
+      p.multiselect({
+        message: "Escolha quais navegadores você pretende utilizar",
+        options: [
+          { label: "Chromium", value: "chromium" },
+          { label: "Firefox", value: "firefox" },
+          { label: AURPackage("Google Chrome"), value: "google-chrome" },
+          {
+            label: AURPackage("Microsoft Edge"),
+            value: "microsoft-edge-stable-bin",
+          },
+          { label: AURPackage("Brave"), value: "brave" },
+        ],
+        initialValues: ["chromium"],
+        required: false,
+      }),
+
+    text_editors: () =>
+      p.multiselect({
+        message: "Escolha seus editores de texto favoritos",
+        options: [
+          { label: "Neovim", value: "neovim" },
+          {
+            label: AURPackage("Visual Studio Code"),
+            value: "visual-studio-code-bin",
+          },
+          { label: "Vim", value: "vim" },
+          { label: "Nano", value: "nano" },
+        ],
+        initialValues: ["neovim"],
+        required: false,
+      }),
+
+    terminal: () =>
+      p.multiselect({
+        message: "Escolha qual será seu terminal",
+        options: [
+          { label: "Terminator", value: "terminator" },
+          { label: "XTerm", value: "xterm" },
+          { label: "Gnome Terminal", value: "gnome-terminal" },
+          { label: "Gnome Console", value: "gnome-console" },
+          {
+            label: AURPackage("Gnome Terminal Transparency"),
+            value: "gnome-terminal-transparency",
+          },
+        ],
+        initialValues: ["terminator"],
+      }),
+
+    shell: () =>
+      p.select({
+        message: "Escolha o seu shell padrão",
+        options: [
+          // @ts-ignore
+          { label: "bash", value: "bash" },
+          // @ts-ignore
+          { label: "zsh", value: "zsh" },
+        ],
+        initialValue: "zsh",
+      }),
+
+    optional: () =>
+      p.multiselect({
+        message: "Escolha alguns outros apps",
+        options: [
+          { label: "Discord", value: "discord" },
+          { label: `Nautilus`, value: "nautilus" },
+          { label: "OBS Studio", value: "obs-studio" },
+          { label: "GitHub CLI", value: "github-cli" },
+          { label: "qBittorrent", value: "qbittorrent" },
+          { label: "yay", value: "yay-bin" },
+          { label: "VLC Media Player", value: "vlc" },
+          { label: AURPackage("Spotify"), value: "spotify" },
+        ],
+        initialValues: ['yay-bin'],
+        required: false,
+      }),
+
+    configuration_files: ({ results }) =>
+      p.multiselect({
+        message: "Quais arquivos de configuração você deseja copiar?",
+        options: configurations,
+        initialValues: [
+          "i3",
+          "polybar",
+          "picom",
+          "rofi",
+          results.text_editors!.includes("neovim") && "nvim",
+          results.optional!.includes("yay-bin") && "yay",
+          results.terminal!.includes("terminator") && "terminator",
+        ] as string[],
+      }),
+  },
+  {
+    // On Cancel callback that wraps the group
+    // So if the user cancels one of the prompts in the group this function will be called
+    onCancel: ({ results }) => {
+      p.cancel("Operation cancelled.");
+      process.exit(0);
+    },
+  }
+);
+
+sudo_pass = group.sudo_pass
+
+let aur_packages: {
+  repo: string;
+  name: string;
+}[] = [];
+
+let packages = [
+  ...group.browsers,
+  ...group.optional,
+  ...group.terminal,
+  ...group.text_editors,
+];
+
+for (const pkg of packages as string[]) {
+  if (Object.keys(AUR_MAP).includes(pkg)) {
+    aur_packages.push({ repo: AUR_MAP[pkg], name: pkg });
+    packages = packages.filter((p) => p != pkg);
+  }
+}
+
+const sys_configs = await p.confirm({
+  message: "Deseja mover os arquivos de configuração do pacman e logind?",
+  initialValue: true,
 });
 
-let nextSteps = `${colors.yellow(`$`)} sudo systemctl start lightdm.service`
+const overwritten_configs = getIntersection((await fs.readdir(
+  `${HOME_DIR}/.config`,
+  {
+    withFileTypes: true,
+  },
+)).map(f => f.name), group.configuration_files as string[])
 
-p.note(nextSteps, 'Next steps.');
+p.note("~/.config/" + overwritten_configs.join("\n~/.config/"), "Os seguintes diretórios serão sobrescritos");
 
+const create_backup = await p.confirm({
+  message:
+    "Deseja criar uma pasta de backup para as configurações pré-existentes?",
+  initialValue: true,
+});
+
+if (sys_configs) {
+  spinner.start("Linkando arquivos");
+
+  exec(sudo("rm -f /etc/pacman.conf"))
+  exec(sudo("rm -f /etc/systemd/logind.conf"));
+  exec(sudo("ln -s $(pwd)/system/pacman.conf /etc/pacman.conf"));
+  exec(sudo("ln -s $(pwd)/system/logind.conf /etc/systemd/logind.conf"));
+
+  spinner.stop("Arquivos linkados com sucesso!");
+}
+
+if(create_backup){
+  spinner.start("Criando backup das configurações pré-existentes")
+
+  if(!fs.exists("backup")) {
+    await fs.mkdir("backup", {
+      mode: ""
+    })
+  }
+
+  console.log(HOME_DIR)
+  console.log(overwritten_configs)
+
+  for (const dir of overwritten_configs){
+    await fs.cp(`${HOME_DIR}/.config/${dir}`, `backup/${dir}`, {
+      dereference: true,
+      recursive: true,
+      force: true
+    })
+  }
+
+  spinner.stop("Backup criado!")
+}
+
+spinner.start("Instalando pacotes essenciais")
+exec(sudo("pacman -S --needed --noconfirm git base-devel tldr wget feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip xclip"))
+spinner.stop("Pacotes instalados com sucesso!")
+
+spinner.start("Instalando pacotes adicionais")
+exec(sudo(`pacman -S --needed --noconfirm ${packages.join(" ")}`))
+spinner.stop("Pacotes instalados com sucesso!")
+
+if (aur_packages.length > 0){
+  spinner.start("Clonando repositórios do AUR")
+  for (const pkg of aur_packages){
+    exec(`git clone ${pkg.repo}`)
+  }
+  spinner.stop("Repositórios clonados")
+
+
+  spinner.start("Instalandos apps do AUR")
+  for (const pkg of aur_packages){
+    exec(`cd ${pkg.name} && makepkg -si --noconfirm --clean`)
+  }
+  spinner.stop("Apps do AUR instalados!")
+}
+
+const auto_start = await p.confirm({
+  message: "Deseja iniciar seu i3 agora?",
+  initialValue: true
+})
+
+let nextSteps = `Sinta-se livre para realizar qualquer outra configuração
+${colors.yellow(`$`)} sudo systemctl start lightdm.service`;
+if (!auto_start) p.note(nextSteps, "Tudo prontinho!")
+// else exec(sudo("systemctl start lightdm.service"))
+
+p.outro("bye bye");

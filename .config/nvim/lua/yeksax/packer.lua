@@ -57,6 +57,8 @@ return require('packer').startup(function(use)
   use("mbbill/undotree")
   use("nvim-treesitter/nvim-treesitter-context");
 
+  use { '0x100101/lab.nvim', run = 'cd js && npm ci', requires = { 'nvim-lua/plenary.nvim' } }
+
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v1.x',
