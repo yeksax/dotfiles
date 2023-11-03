@@ -267,7 +267,7 @@ if (aur_packages.length > 0){
 
   spinner.start("Instalandos apps do AUR")
   for (const pkg of aur_packages){
-    exec(`cd ${pkg.name} && makepkg -si --noconfirm --clean`)
+    exec(`cd ${pkg.name} && makepkg -si --noconfirm --clean --skippgpcheck`)
   }
   spinner.stop("Apps do AUR instalados!")
 }
