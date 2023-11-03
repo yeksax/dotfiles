@@ -236,9 +236,6 @@ if(create_backup){
     })
   }
 
-  console.log(HOME_DIR)
-  console.log(overwritten_configs)
-
   for (const dir of overwritten_configs){
     await fs.cp(`${HOME_DIR}/.config/${dir}`, `backup/${dir}`, {
       dereference: true,
