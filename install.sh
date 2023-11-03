@@ -1,3 +1,3 @@
-curl -fsSL https://github.com/theseyan/bkg/raw/main/install.sh | sudo sh
+curl -fsSL https://bun.sh/install | bash
 
 bun $(pwd)/i3-install/index.ts
