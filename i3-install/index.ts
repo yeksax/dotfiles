@@ -21,7 +21,7 @@ const spinner = p.spinner();
 const AUR_MAP: Record<string, string> = {
   spotify: "https://aur.archlinux.org/spotify.git",
   brave: "https://aur.archlinux.org/brave.git",
-  "google-chrome": "https://aur.archlinux.org/googel-chrome.git",
+  "google-chrome": "https://aur.archlinux.org/google-chrome.git",
   "microsoft-edge-stable-bin":
     "https://aur.archlinux.org/microsoft-edge-stable-bin.git",
   "gnome-terminal-transparency":
@@ -156,6 +156,7 @@ const group = await p.group(
         initialValues: [
           "i3",
           "polybar",
+          "greenclip.toml",
           "picom",
           "rofi",
           results.text_editors!.includes("neovim") && "nvim",
@@ -207,7 +208,7 @@ const overwritten_configs = getIntersection((await fs.readdir(
   },
 )).map(f => f.name), group.configuration_files as string[])
 
-p.note("~/.config/" + overwritten_configs.join("\n~/.config/"), "Os seguintes diretórios serão sobrescritos");
+if (overwritten_configs.length > 0) p.note("~/.config/" + overwritten_configs.join("\n~/.config/"), "Os seguintes diretórios serão sobrescritos");
 
 const create_backup = await p.confirm({
   message:
@@ -216,7 +217,7 @@ const create_backup = await p.confirm({
 });
 
 if (sys_configs) {
-  spinner.start("Linkando arquivos");
+  spinner.start("Linkando arquivos /etc/pacman.conf e /etc/systemd/logind.conf");
 
   exec(sudo("rm -f /etc/pacman.conf"))
   exec(sudo("rm -f /etc/systemd/logind.conf"));
@@ -253,6 +254,13 @@ spinner.start("Instalando pacotes essenciais")
 exec(sudo("pacman -S --needed --noconfirm git base-devel tldr wget feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip xclip"))
 spinner.stop("Pacotes instalados com sucesso!")
 
+if(group.shell === "zsh"){
+  spinner.start("Instalando zsh e definindo como shell padrão")
+  exec(sudo(`pacman -S --needed --noconfirm zsh`))
+  exec(sudo("chsh $USER -s $(which zsh)"))
+  spinner.stop("zsh instalado com sucesso!")
+}
+
 spinner.start("Instalando pacotes adicionais")
 exec(sudo(`pacman -S --needed --noconfirm ${packages.join(" ")}`))
 spinner.stop("Pacotes instalados com sucesso!")
@@ -264,22 +272,29 @@ if (aur_packages.length > 0){
   }
   spinner.stop("Repositórios clonados")
 
-
-  spinner.start("Instalandos apps do AUR")
   for (const pkg of aur_packages){
+    spinner.start(`Instalando ${pkg.name}`)
     exec(`cd ${pkg.name} && makepkg -si --noconfirm --clean --skippgpcheck`)
+    spinner.stop(`${pkg.name} instalado!`)
   }
-  spinner.stop("Apps do AUR instalados!")
 }
 
+for (const config of group.configuration_files as string[]){
+  spinner.start("Linkando arquivos de configuração")
+  exec(sudo(`ln -s $(pwd)/.config/${config} $HOME/config/`))
+  spinner.stop("Arquivos de configuração linkados com sucesso!")
+}
+
+
+
 const auto_start = await p.confirm({
-  message: "Deseja iniciar seu i3 agora?",
+  message: "Tudo pronto! Deseja iniciar seu i3 agora?",
   initialValue: true
 })
 
 let nextSteps = `Sinta-se livre para realizar qualquer outra configuração
 ${colors.yellow(`$`)} sudo systemctl start lightdm.service`;
 if (!auto_start) p.note(nextSteps, "Tudo prontinho!")
-// else exec(sudo("systemctl start lightdm.service"))
+else exec(sudo("systemctl start lightdm.service"))
 
 p.outro("bye bye");
