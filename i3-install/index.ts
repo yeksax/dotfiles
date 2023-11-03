@@ -196,11 +196,6 @@ for (const pkg of packages as string[]) {
   }
 }
 
-const sys_configs = await p.confirm({
-  message: "Deseja mover os arquivos de configuração do pacman e logind?",
-  initialValue: true,
-});
-
 const overwritten_configs = getIntersection((await fs.readdir(
   `${HOME_DIR}/.config`,
   {
@@ -216,15 +211,20 @@ const create_backup = await p.confirm({
   initialValue: true,
 });
 
-if (sys_configs) {
-  spinner.start("Linkando arquivos /etc/pacman.conf e /etc/systemd/logind.conf");
+ spinner.start("Linkando arquivos /etc/pacman.conf e /etc/systemd/logind.conf");
 
-  exec(sudo("rm -f /etc/pacman.conf"))
-  exec(sudo("rm -f /etc/systemd/logind.conf"));
-  exec(sudo("ln -s $(pwd)/system/pacman.conf /etc/pacman.conf"));
-  exec(sudo("ln -s $(pwd)/system/logind.conf /etc/systemd/logind.conf"));
+exec(sudo("rm -f /etc/pacman.conf"))
+exec(sudo("rm -f /etc/systemd/logind.conf"));
+exec(sudo("ln -s $(pwd)/system/pacman.conf /etc/pacman.conf"));
+exec(sudo("ln -s $(pwd)/system/logind.conf /etc/systemd/logind.conf"));
 
-  spinner.stop("Arquivos linkados com sucesso!");
+spinner.stop("Arquivos linkados com sucesso!");
+
+if(group.shell === "zsh"){
+  spinner.start("Instalando zsh e definindo como shell padrão")
+  exec(sudo(`pacman -S --needed --noconfirm zsh`))
+  exec(sudo("chsh $USER -s $(which zsh)"))
+  spinner.stop("zsh instalado com sucesso!")
 }
 
 if(create_backup){
@@ -251,16 +251,11 @@ spinner.start("Instalando pacotes essenciais")
 exec(sudo("pacman -S --needed --noconfirm git base-devel tldr wget feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip xclip"))
 spinner.stop("Pacotes instalados com sucesso!")
 
-if(group.shell === "zsh"){
-  spinner.start("Instalando zsh e definindo como shell padrão")
-  exec(sudo(`pacman -S --needed --noconfirm zsh`))
-  exec(sudo("chsh $USER -s $(which zsh)"))
-  spinner.stop("zsh instalado com sucesso!")
-}
-
 spinner.start("Instalando pacotes adicionais")
 exec(sudo(`pacman -S --needed --noconfirm ${packages.join(" ")}`))
 spinner.stop("Pacotes instalados com sucesso!")
+
+const aur_errors: typeof AUR_MAP = {}
 
 if (aur_packages.length > 0){
   spinner.start("Clonando repositórios do AUR")
@@ -271,9 +266,20 @@ if (aur_packages.length > 0){
 
   for (const pkg of aur_packages){
     spinner.start(`Instalando ${pkg.name}`)
-    exec(`cd ${pkg.name} && makepkg -si --noconfirm --clean --skippgpcheck`)
+    try {
+      exec(`cd ${pkg.name} && makepkg -si --noconfirm --clean --skippgpcheck`)
+    } catch (e) {
+      aur_errors[pkg.name] = pkg.repo
+    }
+
     spinner.stop(`${pkg.name} instalado!`)
   }
+}
+
+if(Object.keys(aur_errors).length > 0){
+  const entries = Object.entries(aur_errors)
+
+  p.note(entries.map(e => `${e[0]}@${e[1]}`).join("\n"), colors.red("! Houveram erros !"))
 }
 
 for (const config of group.configuration_files as string[]){
