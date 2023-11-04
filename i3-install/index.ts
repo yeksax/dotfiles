@@ -257,35 +257,42 @@ spinner.stop("Pacotes instalados com sucesso!")
 
 const aur_errors: typeof AUR_MAP = {}
 
+let installInterrupted = false;
+
+process.on('SIGINT', function() {
+  installInterrupted = true;
+});
+
+async function installPackage({name, repo}: {
+  name: string,
+  repo: string
+}){
+  const installSpinner = p.spinner()
+  installInterrupted = false
+
+  installSpinner.start(`Clonando ${name} do AUR`)
+  exec(`git clone ${repo}`)
+  installSpinner.stop(`${name} clonado`)
+
+  installSpinner.start(`Instalando ${name}`)
+  try {
+    exec(`cd ${name} && makepkg -si --noconfirm --clean --skippgpcheck`)
+  } catch (e) {
+    aur_errors[name] = e as string
+  }
+  installSpinner.stop(`${name} instalado!`)
+
+  installSpinner.start("Limpando arquivos residuais")
+  await fs.rm(`${name}`, {
+    force: true,
+    recursive: true,
+  })
+  installSpinner.stop(`Arquivos residuais de ${name} foram deletados`)
+}
+
 if (aur_packages.length > 0){
   for (const pkg of aur_packages){
-    spinner.start(`Clonando ${pkg.name} do AUR`)
-
-    for (const pkg of aur_packages){
-     exec(`git clone ${pkg.repo}`)
-    }
-
-    spinner.stop(`${pkg.name} clonado`)
-
-
-    spinner.start(`Instalando ${pkg.name}`)
-
-    try {
-      exec(`cd ${pkg.name} && makepkg -si --noconfirm --clean --skippgpcheck`)
-
-      process.on('SIGINT', function() {
-        throw "User cancelation";
-      });
-    } catch (e) {
-      aur_errors[pkg.name] = e as string
-    }
-
-    await fs.rm(`${pkg.name}`, {
-      force: true,
-      recursive: true,
-    })
-
-    spinner.stop(`${pkg.name} instalado!`)
+    await installPackage(pkg)
   }
 }
 
