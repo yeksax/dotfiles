@@ -200,6 +200,9 @@ bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Ctrl+Tab workspace back_and_forth
 
+# polybar
+bindsym $mod+p exec polybar-msg cmd toggle
+
 # change focus between tiling / floating windows
 bindsym $mod+Space focus mode_toggle
 
