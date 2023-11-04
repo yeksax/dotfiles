@@ -258,19 +258,32 @@ spinner.stop("Pacotes instalados com sucesso!")
 const aur_errors: typeof AUR_MAP = {}
 
 if (aur_packages.length > 0){
-  spinner.start("Clonando repositórios do AUR")
   for (const pkg of aur_packages){
-    exec(`git clone ${pkg.repo}`)
-  }
-  spinner.stop("Repositórios clonados")
+    spinner.start(`Clonando ${pkg.name} do AUR`)
 
-  for (const pkg of aur_packages){
+    for (const pkg of aur_packages){
+     exec(`git clone ${pkg.repo}`)
+    }
+
+    spinner.stop(`${pkg.name} clonado`)
+
+
     spinner.start(`Instalando ${pkg.name}`)
+
     try {
       exec(`cd ${pkg.name} && makepkg -si --noconfirm --clean --skippgpcheck`)
+
+      process.on('SIGINT', function() {
+        throw "User cancelation";
+      });
     } catch (e) {
-      aur_errors[pkg.name] = pkg.repo
+      aur_errors[pkg.name] = e as string
     }
+
+    await fs.rm(`${pkg.name}`, {
+      force: true,
+      recursive: true,
+    })
 
     spinner.stop(`${pkg.name} instalado!`)
   }
@@ -279,12 +292,12 @@ if (aur_packages.length > 0){
 if(Object.keys(aur_errors).length > 0){
   const entries = Object.entries(aur_errors)
 
-  p.note(entries.map(e => `${e[0]}@${e[1]}`).join("\n"), colors.red("! Houveram erros !"))
+  p.note(entries.map(e => `${e[0]}: ${e[1]}`).join("\n"), colors.red("Houveram erros !"))
 }
 
 for (const config of group.configuration_files as string[]){
   spinner.start("Linkando arquivos de configuração")
-  exec(sudo(`ln -s $(pwd)/.config/${config} $HOME/config/`))
+  exec(sudo(`ln -s $(pwd)/.config/${config} $HOME/.config/`))
   spinner.stop("Arquivos de configuração linkados com sucesso!")
 }
 

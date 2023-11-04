@@ -228,7 +228,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # decrease screen 
 
 # gaps
 gaps inner 8
-gaps outer 4
+gaps outer 0
 
 # color shemes for windows
 set $bgcolor    #523d64
