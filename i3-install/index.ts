@@ -257,18 +257,11 @@ spinner.stop("Pacotes instalados com sucesso!")
 
 const aur_errors: typeof AUR_MAP = {}
 
-let installInterrupted = false;
-
-process.on('SIGINT', function() {
-  installInterrupted = true;
-});
-
 async function installPackage({name, repo}: {
   name: string,
   repo: string
 }){
   const installSpinner = p.spinner()
-  installInterrupted = false
 
   installSpinner.start(`Clonando ${name} do AUR`)
   exec(`git clone ${repo}`)
@@ -276,6 +269,10 @@ async function installPackage({name, repo}: {
 
   installSpinner.start(`Instalando ${name}`)
   try {
+    process.on("SIGINT", ()=>{
+      console.log("ignore :)")
+    })
+
     exec(`cd ${name} && makepkg -si --noconfirm --clean --skippgpcheck`)
   } catch (e) {
     aur_errors[name] = e as string
