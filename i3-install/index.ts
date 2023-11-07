@@ -155,6 +155,8 @@ const group = await p.group(
         options: configurations,
         initialValues: [
           "i3",
+          "dconf",
+          "gtk-3.0",
           "polybar",
           "greenclip.toml",
           "picom",
@@ -169,7 +171,7 @@ const group = await p.group(
     // On Cancel callback that wraps the group
     // So if the user cancels one of the prompts in the group this function will be called
     onCancel: ({ results }) => {
-      p.cancel("Operation cancelled.");
+      p.cancel("Operação cancelada.");
       process.exit(0);
     },
   }

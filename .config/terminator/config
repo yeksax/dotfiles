@@ -7,15 +7,14 @@
 [profiles]
   [[default]]
     icon_bell = False
-    background_darkness = 0.75
+    background_darkness = 0.48
     background_type = transparent
-    cursor_shape = ibeam
-    font = Geist Mono Semi-Bold 10
-    foreground_color = "#ffffff"
+    font = Geist Mono Medium 10
+    foreground_color = "#e4dfda"
     show_titlebar = False
     scrollbar_position = hidden
     scroll_on_keystroke = False
-    palette = "#1b212f:#f088bd:#5de4c6:#fffac2:#7290aa:#75507b:#5de4c6:#9a9996:#a6acce:#f088bd:#5de4c6:#fffac2:#767c9e:#ad7fa8:#5fb4a1:#eeeeec"
+    palette = "#07090f:#fe6e6d:#cbae75:#fcd891:#cdc8c4:#a275be:#d4b483:#aaaaaa:#cdc8c4:#fe8b8a:#dcc39b:#fcd891:#a4a09c:#d0bade:#e2c282:#e4dfda"
     use_system_font = False
 [layouts]
   [[default]]

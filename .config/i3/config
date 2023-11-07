@@ -174,9 +174,12 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 default_border none
 
 # setting defaults
+for_window [instance="__scratchpad"] move scratchpad
+exec --no-startup-id i3-sensible-terminal -name __scratchpad
+
 exec_always picom --config ~/.config/picom/picom
 exec_always xrandr --output Virtual-1 --mode 1360x768
-exec feh --bg-fill "$HOME/wallpapers/cloudy-trees.jpg"
+exec feh --bg-fill "$HOME/wallpapers/anime-suburb.jpg"
 
 # mouse sensibility (edit last value to change)
 exec xinput set-prop "Logitech G403 HERO Gaming Mouse" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.5
@@ -192,7 +195,14 @@ exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Natural S
 
 
 # setting shortcuts
+# lock
 bindsym $mod+x exec ~/.config/i3/scripts/lock
+
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# reopen any scratchpad
+bindsym $mod+minus scratchpad show
 
 # switching workspaces
 bindsym $mod+Ctrl+Right workspace next

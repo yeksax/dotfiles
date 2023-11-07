@@ -1,6 +1,17 @@
-
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+function ChangeRoot()
+    local current_path = vim.fn.getcwd().. '/' -- Obtém o caminho atual
+    local new_root = vim.fn.input("Digite o caminho: ", current_path)
+    if new_root ~= '' then
+        local input_path = vim.fn.fnamemodify(new_root, ':p') -- Converte o caminho inserido em um caminho absoluto
+        vim.fn.execute('lcd ' .. input_path)
+    end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>c', ':lua ChangeRoot()<CR>', { noremap = true, silent = true })
+
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

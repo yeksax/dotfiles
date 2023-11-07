@@ -60,8 +60,8 @@ fade-out-step = 0.1;
 #   Transparency / Opacity      #
 #################################
 
-inactive-opacity = 0.95;
-frame-opacity = 0.9;
+inactive-opacity = 0.85;
+frame-opacity = 1;
 
 # Let inactive opacity set by -i override the '_NET_WM_WINDOW_OPACITY' values of windows.
 # inactive-opacity-override = true
