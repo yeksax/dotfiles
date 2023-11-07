@@ -191,7 +191,7 @@ function setIcons {
         #Clear sky
         if [ $DATE -ge $SUNRISE -a $DATE -le $SUNSET ]; then
             ICON_COLOR=$COLOR_SUN
-            ICON=" "
+            ICON=" "
         else
             ICON_COLOR=$COLOR_MOON
             ICON=" "

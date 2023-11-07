@@ -5,14 +5,14 @@
  *******************************************************************************/
 
 * {
-    font:   "Geist Mono 10";
+    font:   "Geist Medium 10";
 
-    bg0:    #242424E6;
-    bg1:    #7E7E7E80;
-    bg2:    #0860f2E6;
+    bg0:    #00000070;
+    bg1:    #6a6b6f80;
+    bg2:    #D4B483E6;
 
-    fg0:    #DEDEDE;
-    fg1:    #FFFFFF;
+    fg0:    #E4DFDA;
+    fg1:    #E4DFDA;
     fg2:    #DEDEDE80;
 
     background-color:   transparent;
@@ -33,7 +33,7 @@ window {
 
 inputbar {
     font:       "Geist Mono 11";
-    padding:    12px 24px;
+    padding:    18px 24px;
     spacing:    12px;
     children:   [ entry, icon-search ];
 }
@@ -75,7 +75,7 @@ listview {
 }
 
 element {
-    padding:            8px 24px;
+    padding:            10px 24px;
     spacing:            16px;
     background-color:   transparent;
 }
