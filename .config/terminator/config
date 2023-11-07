@@ -14,7 +14,7 @@
     show_titlebar = False
     scrollbar_position = hidden
     scroll_on_keystroke = False
-    palette = "#07090f:#fe6e6d:#cbae75:#fcd891:#cdc8c4:#a275be:#d4b483:#aaaaaa:#cdc8c4:#fe8b8a:#dcc39b:#fcd891:#a4a09c:#d0bade:#e2c282:#e4dfda"
+    palette = "#07090f:#6c6258:#cbae75:#a98f6e:#e0a875:#fecb7a:#b3a082:#e8d2ba:#cdc8c4:#6c6258:#cbae75:#a98f6e:#e0a875:#fecb7a:#b3a082:#e8d2ba"
     use_system_font = False
 [layouts]
   [[default]]
