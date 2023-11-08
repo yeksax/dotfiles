@@ -28,7 +28,7 @@ const AUR_MAP: Record<string, string> = {
     "https://aur.archlinux.org/gnome-terminal-transparency.git",
   "visual-studio-code-bin":
     "https://aur.archlinux.org/visual-studio-code-bin.git",
-  "yay-bin": "https://aur.archlinux.org/yay-bin.git"
+  "yay-bin": "https://aur.archlinux.org/yay-bin.git",
 };
 
 interface Directories {
@@ -39,20 +39,17 @@ interface Directories {
 let configurations: Directories[] = [];
 let home: Directories[] = [];
 
-configurations = (await fs.readdir(
-  "./.config/",
-  {
+configurations = (
+  await fs.readdir("./.config/", {
     withFileTypes: true,
-  }
-)).map((f) => ({ label: f.name, value: f.name }));
+  })
+).map((f) => ({ label: f.name, value: f.name }));
 
-
-home = (await fs.readdir(
-  "./home/",
-  {
+home = (
+  await fs.readdir("./home/", {
     withFileTypes: true,
-  }
-)).map((f)=> ({ label: f.name, value: f.name }))
+  })
+).map((f) => ({ label: f.name, value: f.name }));
 
 function AURPackage(package_name: string) {
   return `${package_name} ${colors.italic(colors.dim("(AUR)"))}`;
@@ -60,16 +57,17 @@ function AURPackage(package_name: string) {
 
 let sudo_pass: string;
 
-function sudo(command: string){
-  return `echo ${sudo_pass.toString()} | sudo -S -k ${command}`
+function sudo(command: string) {
+  return `echo ${sudo_pass.toString()} | sudo -S -k ${command}`;
 }
 
 const group = await p.group(
   {
-    sudo_pass: () => p.password({
-      message: "Qual a senha para execução de comandos que requerem sudo?",
-      mask: "*"
-    }),
+    sudo_pass: () =>
+      p.password({
+        message: "Qual a senha para execução de comandos que requerem sudo?",
+        mask: "*",
+      }),
 
     browsers: () =>
       p.multiselect({
@@ -145,7 +143,7 @@ const group = await p.group(
           { label: "VLC Media Player", value: "vlc" },
           { label: AURPackage("Spotify"), value: "spotify" },
         ],
-        initialValues: ['yay-bin'],
+        initialValues: ["yay-bin"],
         required: false,
       }),
 
@@ -174,10 +172,10 @@ const group = await p.group(
       p.cancel("Operação cancelada.");
       process.exit(0);
     },
-  }
+  },
 );
 
-sudo_pass = group.sudo_pass
+sudo_pass = group.sudo_pass;
 
 let aur_packages: {
   repo: string;
@@ -198,14 +196,20 @@ for (const pkg of packages as string[]) {
   }
 }
 
-const overwritten_configs = getIntersection((await fs.readdir(
-  `${HOME_DIR}/.config`,
-  {
-    withFileTypes: true,
-  },
-)).map(f => f.name), group.configuration_files as string[])
+const overwritten_configs = getIntersection(
+  (
+    await fs.readdir(`${HOME_DIR}/.config`, {
+      withFileTypes: true,
+    })
+  ).map((f) => f.name),
+  group.configuration_files as string[],
+);
 
-if (overwritten_configs.length > 0) p.note("~/.config/" + overwritten_configs.join("\n~/.config/"), "Os seguintes diretórios serão sobrescritos");
+if (overwritten_configs.length > 0)
+  p.note(
+    "~/.config/" + overwritten_configs.join("\n~/.config/"),
+    "Os seguintes diretórios serão sobrescritos",
+  );
 
 const create_backup = await p.confirm({
   message:
@@ -213,110 +217,112 @@ const create_backup = await p.confirm({
   initialValue: true,
 });
 
- spinner.start("Linkando arquivos /etc/pacman.conf e /etc/systemd/logind.conf");
+spinner.start("Linkando arquivos /etc/pacman.conf e /etc/systemd/logind.conf");
 
-exec(sudo("rm -f /etc/pacman.conf"))
+exec(sudo("rm -f /etc/pacman.conf"));
 exec(sudo("rm -f /etc/systemd/logind.conf"));
 exec(sudo("ln -s $(pwd)/system/pacman.conf /etc/pacman.conf"));
 exec(sudo("ln -s $(pwd)/system/logind.conf /etc/systemd/logind.conf"));
 
 spinner.stop("Arquivos linkados com sucesso!");
 
-if(group.shell === "zsh"){
-  spinner.start("Instalando zsh e definindo como shell padrão")
-  exec(sudo(`pacman -S --needed --noconfirm zsh`))
-  exec(sudo("chsh $USER -s $(which zsh)"))
-  spinner.stop("zsh instalado com sucesso!")
+if (group.shell === "zsh") {
+  spinner.start("Instalando zsh e definindo como shell padrão");
+  exec(sudo(`pacman -S --needed --noconfirm zsh`));
+  exec(sudo("chsh $USER -s $(which zsh)"));
+  spinner.stop("zsh instalado com sucesso!");
 }
 
-if(create_backup){
-  spinner.start("Criando backup das configurações pré-existentes")
+if (create_backup) {
+  spinner.start("Criando backup das configurações pré-existentes");
 
-  if(!fs.exists("backup")) {
+  if (!fs.exists("backup")) {
     await fs.mkdir("backup", {
-      mode: ""
-    })
+      mode: "",
+    });
   }
 
-  for (const dir of overwritten_configs){
+  for (const dir of overwritten_configs) {
     await fs.cp(`${HOME_DIR}/.config/${dir}`, `backup/${dir}`, {
       dereference: true,
       recursive: true,
-      force: true
-    })
+      force: true,
+    });
   }
 
-  spinner.stop("Backup criado!")
+  spinner.stop("Backup criado!");
 }
 
-spinner.start("Instalando pacotes essenciais")
-exec(sudo("pacman -S --needed --noconfirm git base-devel tldr wget feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip xclip"))
-spinner.stop("Pacotes instalados com sucesso!")
+spinner.start("Instalando pacotes essenciais");
+exec(
+  sudo(
+    "pacman -S --needed --noconfirm git base-devel tldr wget feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip xclip",
+  ),
+);
+spinner.stop("Pacotes instalados com sucesso!");
 
-spinner.start("Instalando pacotes adicionais")
-exec(sudo(`pacman -S --needed --noconfirm ${packages.join(" ")}`))
-spinner.stop("Pacotes instalados com sucesso!")
+spinner.start("Instalando pacotes adicionais");
+exec(sudo(`pacman -S --needed --noconfirm ${packages.join(" ")}`));
+spinner.stop("Pacotes instalados com sucesso!");
 
-const aur_errors: typeof AUR_MAP = {}
+const aur_errors: typeof AUR_MAP = {};
 
-async function installPackage({name, repo}: {
-  name: string,
-  repo: string
-}){
-  const installSpinner = p.spinner()
+async function installPackage({ name, repo }: { name: string; repo: string }) {
+  const installSpinner = p.spinner();
 
-  installSpinner.start(`Clonando ${name} do AUR`)
-  exec(`git clone ${repo}`)
-  installSpinner.stop(`${name} clonado`)
+  installSpinner.start(`Clonando ${name} do AUR`);
+  exec(`git clone ${repo}`);
+  installSpinner.stop(`${name} clonado`);
 
-  installSpinner.start(`Instalando ${name}`)
+  installSpinner.start(`Instalando ${name}`);
   try {
-    process.on("SIGINT", ()=>{
-      console.log("ignore :)")
-    })
+    process.on("SIGINT", () => {
+      console.log("ignore :)");
+    });
 
-    exec(`cd ${name} && makepkg -si --noconfirm --clean --skippgpcheck`)
+    exec(`cd ${name} && makepkg -si --noconfirm --clean --skippgpcheck`);
   } catch (e) {
-    aur_errors[name] = e as string
+    aur_errors[name] = e as string;
   }
-  installSpinner.stop(`${name} instalado!`)
+  installSpinner.stop(`${name} instalado!`);
 
-  installSpinner.start("Limpando arquivos residuais")
+  installSpinner.start("Limpando arquivos residuais");
   await fs.rm(`${name}`, {
     force: true,
     recursive: true,
-  })
-  installSpinner.stop(`Arquivos residuais de ${name} foram deletados`)
+  });
+  installSpinner.stop(`Arquivos residuais de ${name} foram deletados`);
 }
 
-if (aur_packages.length > 0){
-  for (const pkg of aur_packages){
-    await installPackage(pkg)
+if (aur_packages.length > 0) {
+  for (const pkg of aur_packages) {
+    await installPackage(pkg);
   }
 }
 
-if(Object.keys(aur_errors).length > 0){
-  const entries = Object.entries(aur_errors)
+if (Object.keys(aur_errors).length > 0) {
+  const entries = Object.entries(aur_errors);
 
-  p.note(entries.map(e => `${e[0]}: ${e[1]}`).join("\n"), colors.red("Houveram erros !"))
+  p.note(
+    entries.map((e) => `${e[0]}: ${e[1]}`).join("\n"),
+    colors.red("Houveram erros !"),
+  );
 }
 
-for (const config of group.configuration_files as string[]){
-  spinner.start("Linkando arquivos de configuração")
-  exec(sudo(`ln -s $(pwd)/.config/${config} $HOME/.config/`))
-  spinner.stop("Arquivos de configuração linkados com sucesso!")
+for (const config of group.configuration_files as string[]) {
+  spinner.start("Linkando arquivos de configuração");
+  exec(sudo(`ln -s $(pwd)/.config/${config} $HOME/.config/`));
+  spinner.stop("Arquivos de configuração linkados com sucesso!");
 }
-
-
 
 const auto_start = await p.confirm({
   message: "Tudo pronto! Deseja iniciar seu i3 agora?",
-  initialValue: true
-})
+  initialValue: true,
+});
 
 let nextSteps = `Sinta-se livre para realizar qualquer outra configuração
 ${colors.yellow(`$`)} sudo systemctl start lightdm.service`;
-if (!auto_start) p.note(nextSteps, "Tudo prontinho!")
-else exec(sudo("systemctl start lightdm.service"))
+if (!auto_start) p.note(nextSteps, "Tudo prontinho!");
+else exec(sudo("systemctl start lightdm.service"));
 
 p.outro("bye bye");
