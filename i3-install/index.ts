@@ -315,6 +315,10 @@ for (const config of group.configuration_files as string[]) {
   spinner.stop("Arquivos de configuração linkados com sucesso!");
 }
 
+spinner.start("Linkando arquivos da home");
+exec(sudo(`ln -s $(pwd)/home/* $HOME/`));
+spinner.stop("Arquivos da home linkados com sucesso!");
+
 const auto_start = await p.confirm({
   message: "Tudo pronto! Deseja iniciar seu i3 agora?",
   initialValue: true,
