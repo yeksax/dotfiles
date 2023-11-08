@@ -55,20 +55,8 @@ function AURPackage(package_name: string) {
   return `${package_name} ${colors.italic(colors.dim("(AUR)"))}`;
 }
 
-let sudo_pass: string;
-
-function sudo(command: string) {
-  return `echo ${sudo_pass.toString()} | sudo -S -k ${command}`;
-}
-
 const group = await p.group(
   {
-    sudo_pass: () =>
-      p.password({
-        message: "Qual a senha para execução de comandos que requerem sudo?",
-        mask: "*",
-      }),
-
     browsers: () =>
       p.multiselect({
         message: "Escolha quais navegadores você pretende utilizar",
@@ -175,8 +163,6 @@ const group = await p.group(
   },
 );
 
-sudo_pass = group.sudo_pass;
-
 let aur_packages: {
   repo: string;
   name: string;
@@ -219,17 +205,17 @@ const create_backup = await p.confirm({
 
 spinner.start("Linkando arquivos /etc/pacman.conf e /etc/systemd/logind.conf");
 
-exec(sudo("rm -f /etc/pacman.conf"));
-exec(sudo("rm -f /etc/systemd/logind.conf"));
-exec(sudo("ln -s $(pwd)/system/pacman.conf /etc/pacman.conf"));
-exec(sudo("ln -s $(pwd)/system/logind.conf /etc/systemd/logind.conf"));
+exec("sudo rm -f /etc/pacman.conf");
+exec("sudo rm -f /etc/systemd/logind.conf");
+exec("sudo ln -s $(pwd)/system/pacman.conf /etc/pacman.conf");
+exec("sudo ln -s $(pwd)/system/logind.conf /etc/systemd/logind.conf");
 
 spinner.stop("Arquivos linkados com sucesso!");
 
 if (group.shell === "zsh") {
   spinner.start("Instalando zsh e definindo como shell padrão");
-  exec(sudo(`pacman -S --needed --noconfirm zsh`));
-  exec(sudo("chsh $USER -s $(which zsh)"));
+  exec(`sudo pacman -S --needed --noconfirm zsh`);
+  exec("sudo chsh $USER -s $(which zsh)");
   spinner.stop("zsh instalado com sucesso!");
 }
 
@@ -255,14 +241,12 @@ if (create_backup) {
 
 spinner.start("Instalando pacotes essenciais");
 exec(
-  sudo(
-    "pacman -S --needed --noconfirm git base-devel tldr wget feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip xclip",
-  ),
+  "sudo pacman -S --needed --noconfirm git base-devel tldr wget feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip xclip",
 );
 spinner.stop("Pacotes instalados com sucesso!");
 
 spinner.start("Instalando pacotes adicionais");
-exec(sudo(`pacman -S --needed --noconfirm ${packages.join(" ")}`));
+exec(`sudo pacman -S --needed --noconfirm ${packages.join(" ")}`);
 spinner.stop("Pacotes instalados com sucesso!");
 
 const aur_errors: typeof AUR_MAP = {};
@@ -311,12 +295,12 @@ if (Object.keys(aur_errors).length > 0) {
 
 for (const config of group.configuration_files as string[]) {
   spinner.start("Linkando arquivos de configuração");
-  exec(sudo(`ln -s $(pwd)/.config/${config} $HOME/.config/`));
+  exec(`sudo ln -s $(pwd)/.config/${config} $HOME/.config/`);
   spinner.stop("Arquivos de configuração linkados com sucesso!");
 }
 
 spinner.start("Linkando arquivos da home");
-exec(sudo(`ln -s $(pwd)/home/* $HOME/`));
+exec(`sudo ln -s $(pwd)/home/* $HOME/`);
 spinner.stop("Arquivos da home linkados com sucesso!");
 
 const auto_start = await p.confirm({
@@ -327,6 +311,6 @@ const auto_start = await p.confirm({
 let nextSteps = `Sinta-se livre para realizar qualquer outra configuração
 ${colors.yellow(`$`)} sudo systemctl start lightdm.service`;
 if (!auto_start) p.note(nextSteps, "Tudo prontinho!");
-else exec(sudo("systemctl start lightdm.service"));
+else exec("sudo systemctl start lightdm.service");
 
 p.outro("bye bye");
