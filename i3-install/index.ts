@@ -110,9 +110,7 @@ const group = await p.group(
       p.select({
         message: "Escolha o seu shell padrão",
         options: [
-          // @ts-ignore
           { label: "bash", value: "bash" },
-          // @ts-ignore
           { label: "zsh", value: "zsh" },
         ],
         initialValue: "zsh",
@@ -241,7 +239,7 @@ if (create_backup) {
 
 spinner.start("Instalando pacotes essenciais");
 exec(
-  "sudo pacman -S --needed --noconfirm git base-devel tldr wget feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip xclip",
+  "sudo pacman -S --needed --noconfirm git base-devel tldr wget feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip xclip dunst",
 );
 spinner.stop("Pacotes instalados com sucesso!");
 

@@ -4,11 +4,23 @@
   always_split_with_profile = True
   smart_copy = False
 [keybindings]
+  toggle_zoom = <Primary>apostrophe
 [profiles]
   [[default]]
     icon_bell = False
-    background_darkness = 0.48
+    background_darkness = 0.66
     background_type = transparent
+    font = Geist Mono Medium 10
+    foreground_color = "#e4dfda"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scroll_on_keystroke = False
+    palette = "#07090f:#6c6258:#cbae75:#a98f6e:#e0a875:#fecb7a:#b3a082:#e8d2ba:#cdc8c4:#6c6258:#cbae75:#a98f6e:#e0a875:#fecb7a:#b3a082:#e8d2ba"
+    use_system_font = False
+    copy_on_selection = True
+  [[default no transparency]]
+    icon_bell = False
+    background_darkness = 0.33
     font = Geist Mono Medium 10
     foreground_color = "#e4dfda"
     show_titlebar = False

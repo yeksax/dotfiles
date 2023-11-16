@@ -5,9 +5,6 @@ lsp.preset("recommended")
 lsp.ensure_installed({
 	"tsserver",
 	"eslint",
-	"stylua",
-	"prettier",
-	"svelte-language-server",
 })
 
 -- Fix Undefined global 'vim'
