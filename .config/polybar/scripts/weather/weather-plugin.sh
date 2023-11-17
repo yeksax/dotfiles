@@ -22,7 +22,7 @@ LANG="pt_br"
 UNITS="metric"
 
 # Color Settings ______________________________________________________________
-GENERAL_COLOR="#89dceb"
+GENERAL_COLOR="#f2cdcd"
 
 COLOR_CLOUD=$GENERAL_COLOR
 COLOR_THUNDER=$GENERAL_COLOR
