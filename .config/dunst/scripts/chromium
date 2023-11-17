@@ -1,0 +1,3 @@
+#!/bin/bash
+#message="$(echo "$2" | sed -n '3,$p')"
+#dunstify -a "$1" -u normal "$message"

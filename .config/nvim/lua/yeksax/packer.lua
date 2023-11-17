@@ -12,24 +12,18 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require("packer").startup(function(use)
-  -- Packer can manage itself
   use("wbthomason/packer.nvim")
 
   use({
     "nvim-telescope/telescope.nvim",
     tag = "0.1.4",
-    -- or                            , branch = '0.1.x',
     requires = { { "nvim-lua/plenary.nvim" } },
   })
 
   use({
     "olivercederborg/poimandres.nvim",
     config = function()
-      require("poimandres").setup({
-        -- leave this setup function empty for default config
-        -- or refer to the configuration section
-        -- for configuration options
-      })
+      require("poimandres").setup({})
     end,
   })
 
@@ -38,9 +32,6 @@ return require("packer").startup(function(use)
     config = function()
       require("trouble").setup({
         icons = false,
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
       })
     end,
   })
@@ -89,6 +80,21 @@ return require("packer").startup(function(use)
   use("Exafunction/codeium.vim")
   use("tpope/vim-fugitive")
 
+  use("nvim-tree/nvim-tree.lua")
+  use("nvim-tree/nvim-web-devicons")
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
+
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+
   -- themes
   use("rebelot/kanagawa.nvim")
   use("catppuccin/nvim")
@@ -97,6 +103,7 @@ return require("packer").startup(function(use)
   use("bluz71/vim-nightfly-colors")
   use("bluz71/vim-moonfly-colors")
   use("savq/melange-nvim")
+
 
   if packer_bootstrap then
     require("packer").sync()

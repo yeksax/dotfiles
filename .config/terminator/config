@@ -3,11 +3,13 @@
   hide_from_taskbar = True
   always_split_with_profile = True
   smart_copy = False
+  case_sensitive = False
 [keybindings]
   toggle_zoom = <Primary>apostrophe
 [profiles]
   [[default]]
     icon_bell = False
+    background_color = "#07090f"
     background_darkness = 0.66
     background_type = transparent
     font = Geist Mono Medium 10

@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", ':NvimTreeToggle<CR>')
+vim.keymap.set("n", "<C-b>", ':NvimTreeToggle<CR>')
 
 function ChangeRoot()
     local current_path = vim.fn.getcwd().. '/' -- Obtém o caminho atual
