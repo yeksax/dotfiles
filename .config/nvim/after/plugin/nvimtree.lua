@@ -2,6 +2,11 @@ require("nvim-tree").setup({
   sort_by = "case_sensitive",
   filters = {
     dotfiles = false,
+    git_clean = false,
+    no_buffer = false,
+    custom = {
+      ".git"
+    }
   },
   renderer = {
     highlight_git = true,

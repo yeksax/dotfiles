@@ -22,24 +22,25 @@ LANG="pt_br"
 UNITS="metric"
 
 # Color Settings ______________________________________________________________
+GENERAL_COLOR="#89dceb"
 
-COLOR_CLOUD="#D4B483"
-COLOR_THUNDER="#D4B483"
-COLOR_LIGHT_RAIN="#D4B483"
-COLOR_HEAVY_RAIN="#D4B483"
-COLOR_SNOW="#D4B483"
-COLOR_FOG="#D4B483"
-COLOR_TORNADO="#D4B483"
-COLOR_SUN="#D4B483"
-COLOR_MOON="#D4B483"
-COLOR_ERR="#D4B483"
-COLOR_WIND="#D4B483"
-COLOR_COLD="#D4B483"
-COLOR_HOT="#D4B483"
-COLOR_NORMAL_TEMP="#D4B483"
+COLOR_CLOUD=$GENERAL_COLOR
+COLOR_THUNDER=$GENERAL_COLOR
+COLOR_LIGHT_RAIN=$GENERAL_COLOR
+COLOR_HEAVY_RAIN=$GENERAL_COLOR
+COLOR_SNOW=$GENERAL_COLOR
+COLOR_FOG=$GENERAL_COLOR
+COLOR_TORNADO=$GENERAL_COLOR
+COLOR_SUN=$GENERAL_COLOR
+COLOR_MOON=$GENERAL_COLOR
+COLOR_ERR=$GENERAL_COLOR
+COLOR_WIND=$GENERAL_COLOR
+COLOR_COLD=$GENERAL_COLOR
+COLOR_HOT=$GENERAL_COLOR
+COLOR_NORMAL_TEMP=$GENERAL_COLOR
 
 # Leave "" if you want the default polybar color
-COLOR_TEXT="#FFFFFF"
+COLOR_TEXT=""
 # Polybar settings ____________________________________________________________
 
 # Font for the weather icons
@@ -194,7 +195,7 @@ function setIcons {
             ICON=" "
         else
             ICON_COLOR=$COLOR_MOON
-            ICON=" "
+            ICON=" "
         fi
     elif [ $WID -eq 801 ]; then
         # Few clouds
