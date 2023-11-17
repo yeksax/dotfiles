@@ -15,10 +15,40 @@ return require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
 
   use({
+    "VonHeikemen/lsp-zero.nvim",
+    branch = "v1.x",
+    requires = {
+      -- LSP Support
+      { "neovim/nvim-lspconfig" },
+      { "williamboman/mason.nvim" },
+      { "williamboman/mason-lspconfig.nvim" },
+
+      -- Autocompletion
+      { "hrsh7th/nvim-cmp" },
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-nvim-lua" },
+
+      -- Snippets
+      { "L3MON4D3/LuaSnip" },
+      { "rafamadriz/friendly-snippets" },
+    },
+  })
+
+  use({
     "nvim-telescope/telescope.nvim",
     tag = "0.1.4",
     requires = { { "nvim-lua/plenary.nvim" } },
   })
+
+  use {
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function()
+      require("telescope").load_extension "frecency"
+    end,
+  }
 
   use({
     "olivercederborg/poimandres.nvim",
@@ -43,45 +73,6 @@ return require("packer").startup(function(use)
       ts_update()
     end,
   })
-  use("nvim-treesitter/playground")
-  use("theprimeagen/harpoon")
-  use("theprimeagen/refactoring.nvim")
-  use("mbbill/undotree")
-  use("nvim-treesitter/nvim-treesitter-context")
-
-  use({ "0x100101/lab.nvim", run = "cd js && npm ci", requires = { "nvim-lua/plenary.nvim" } })
-
-  use({
-    "VonHeikemen/lsp-zero.nvim",
-    branch = "v1.x",
-    requires = {
-      -- LSP Support
-      { "neovim/nvim-lspconfig" },
-      { "williamboman/mason.nvim" },
-      { "williamboman/mason-lspconfig.nvim" },
-
-      -- Autocompletion
-      { "hrsh7th/nvim-cmp" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "saadparwaiz1/cmp_luasnip" },
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-nvim-lua" },
-
-      -- Snippets
-      { "L3MON4D3/LuaSnip" },
-      { "rafamadriz/friendly-snippets" },
-    },
-  })
-
-  use("folke/zen-mode.nvim")
-  use("eandrju/cellular-automaton.nvim")
-  use("mhartington/formatter.nvim")
-  use("Exafunction/codeium.vim")
-  use("tpope/vim-fugitive")
-
-  use("nvim-tree/nvim-tree.lua")
-  use("nvim-tree/nvim-web-devicons")
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -94,6 +85,21 @@ return require("packer").startup(function(use)
       require('Comment').setup()
     end
   }
+
+  use({ "0x100101/lab.nvim", run = "cd js && npm ci", requires = { "nvim-lua/plenary.nvim" } })
+
+  use("nvim-treesitter/playground")
+  use("theprimeagen/harpoon")
+  use("theprimeagen/refactoring.nvim")
+  use("mbbill/undotree")
+  use("nvim-treesitter/nvim-treesitter-context")
+  use("folke/zen-mode.nvim")
+  use("eandrju/cellular-automaton.nvim")
+  use("mhartington/formatter.nvim")
+  use("Exafunction/codeium.vim")
+  use("tpope/vim-fugitive")
+  use("nvim-tree/nvim-tree.lua")
+  use("nvim-tree/nvim-web-devicons")
 
   -- themes
   use("rebelot/kanagawa.nvim")

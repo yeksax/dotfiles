@@ -5,7 +5,7 @@ require 'nvim-web-devicons'.setup {
   override = {
     zsh = {
       icon = "",
-      color = "#01aed8",
+      color = "#07090F",
       cterm_color = "65",
       name = "Zsh"
     },
@@ -14,10 +14,35 @@ require 'nvim-web-devicons'.setup {
       color = "#01aed8",
       name = "Go"
     },
+    svelte = {
+      icon = "",
+      color = "#fe4407",
+      name = "Svelte"
+    },
+    json = {
+      icon = "󰘦",
+      color = "#f8e026",
+      name = "Json"
+    },
+    js = {
+      icon = "",
+      color = "#f8e026",
+      name = "Javascript"
+    },
+    gitignore = {
+      icon = "",
+      color = "#f05134",
+      name = "Gitignore"
+    },
+    gitconfig = {
+      icon = "",
+      color = "#f05134",
+      name = "Gitconfig"
+    },
   },
   -- globally enable different highlight colors per icon (default to true)
   -- if set to false all icons will have the default icon's color
-  color_icons = true,
+  color_icons = false,
   -- globally enable default icons (default to false)
   -- will get overriden by `get_icons` option
   default = true,
@@ -29,16 +54,6 @@ require 'nvim-web-devicons'.setup {
   -- same as `override` but specifically for overrides by filename
   -- takes effect when `strict` is true
   override_by_filename = {
-    [".gitignore"] = {
-      icon = "",
-      color = "#f1502f",
-      name = "Gitignore"
-    },
-    [".gitconfig"] = {
-      icon = "",
-      color = "#f1502f",
-      name = "Gitconfig"
-    },
     ["go.mod"] = {
       icon = "󰟓",
       color = "#01aed8",

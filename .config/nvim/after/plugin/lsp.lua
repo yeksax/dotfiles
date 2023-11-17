@@ -7,7 +7,6 @@ lsp.ensure_installed({
 	"eslint",
 })
 
--- Fix Undefined global 'vim'
 lsp.nvim_workspace()
 
 local cmp = require("cmp")

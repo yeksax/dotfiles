@@ -30,7 +30,7 @@
     height = 96
 
     # Position the notification in the top right corner
-    origin = top-center
+    origin = top-right
 
     # Offset from the origin
     offset = 10x50
@@ -163,7 +163,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<b>%s</b>\n%b          "
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -316,27 +316,29 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#111215"
-    foreground = "#E4DFDA"
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#111215"
-    foreground = "#E4DFDA"
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#111215"
-    foreground = "#FE4A49"
-    frame_color = "#ff0000"
+    background = "#1e1e2e"
+    foreground = "#f2cdcd"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon
 
+[chromium-fix]
+  appname = Chromium
+  format = "<b>%s</b> %b"
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
