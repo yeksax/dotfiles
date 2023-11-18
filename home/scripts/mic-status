@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pactl get-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo | awk '/Mute: yes/ { system("echo  ") } /Mute: no/ { system("echo ") }'
