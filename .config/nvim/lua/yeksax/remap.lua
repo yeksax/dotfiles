@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", ':NvimTreeToggle<CR>')
 vim.keymap.set("n", "<C-b>", ':NvimTreeToggle<CR>')
 
+vim.api.nvim_set_keymap('n', '<Tab>', '<C-w>w', { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>t', '<C-w>s <C-w>j :term<CR> :resize 10<CR> i', { noremap = true, silent = true })
 
