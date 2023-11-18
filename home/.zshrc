@@ -9,7 +9,7 @@ export VISUAL=nvim
 export TERMINAL=terminator
 export PATH=$PATH:$HOME/scripts
 
-alias ls='ls --color=auto --all'
+alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias neofetch='fm6000 -f ~/ascii/arch.txt -c blue -nd -os "arch linux"'
 # traição acima, desculpa...
