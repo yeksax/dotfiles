@@ -1,4 +1,4 @@
-sudo pacman -S --needed --noconfirm unzip
+sudo pacman -S --needed --noconfirm unzip vim
 curl -fsSL https://bun.sh/install | bash
 
 export PATH=$PATH:~/.bun/bin
@@ -6,5 +6,4 @@ export PATH=$PATH:~/.bun/bin
 cd i3-install
 bun install
 cd ..
-bun $(pwd)/i3-install/index.ts
-
+bun $(pwd)/install/index.ts

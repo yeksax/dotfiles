@@ -1,5 +1,5 @@
 {
-  "name": "i3-install",
+  "name": "install",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {

@@ -6,6 +6,30 @@
 [keybindings]
   toggle_zoom = <Primary>apostrophe
 [profiles]
+  [[default]]
+    background_color = "#181825"
+    background_darkness = 0.75
+    background_type = transparent
+    font = Geist Mono Medium 10
+    foreground_color = "#cdd6f4"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scroll_on_keystroke = False
+    palette = "#45475a:#f38ba8:#a6e3a1:#f9e2af:#89b4fa:#f5c2e7:#94e2d5:#bac2de:#585b70:#f38ba8:#a6e3a1:#f9e2af:#89b4fa:#f5c2e7:#94e2d5:#a6adc8"
+    use_system_font = False
+    copy_on_selection = True
+  [[Catppuccin_Macchiato]]
+    background_color = "#24273a"
+    background_darkness = 0.75
+    background_type = transparent
+    font = Geist Mono Medium 10
+    foreground_color = "#cad3f5"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scroll_on_keystroke = False
+    palette = "#494d64:#ed8796:#a6da95:#eed49f:#8aadf4:#f5bde6:#8bd5ca:#b8c0e0:#5b6078:#ed8796:#a6da95:#eed49f:#8aadf4:#f5bde6:#8bd5ca:#a5adcb"
+    use_system_font = False
+    copy_on_selection = True
   [[Golden]]
     icon_bell = False
     background_color = "#07090f"
@@ -45,30 +69,6 @@
     palette = "#51576d:#e78284:#a6d189:#e5c890:#8caaee:#f4b8e4:#81c8be:#b5bfe2:#626880:#e78284:#a6d189:#e5c890:#8caaee:#f4b8e4:#81c8be:#a5adce"
     use_system_font = False
     copy_on_selection = True
-  [[default]]
-    background_color = "#24273a"
-    background_darkness = 0.75
-    background_type = transparent
-    font = Geist Mono Medium 10
-    foreground_color = "#cad3f5"
-    show_titlebar = False
-    scrollbar_position = hidden
-    scroll_on_keystroke = False
-    palette = "#494d64:#ed8796:#a6da95:#eed49f:#8aadf4:#f5bde6:#8bd5ca:#b8c0e0:#5b6078:#ed8796:#a6da95:#eed49f:#8aadf4:#f5bde6:#8bd5ca:#a5adcb"
-    use_system_font = False
-    copy_on_selection = True
-  [[Catppuccin_Mocha]]
-    palette = "#45475a:#f38ba8:#a6e3a1:#f9e2af:#89b4fa:#f5c2e7:#94e2d5:#bac2de:#585b70:#f38ba8:#a6e3a1:#f9e2af:#89b4fa:#f5c2e7:#94e2d5:#a6adc8"
-    background_color = "#181825"
-    foreground_color = "#cdd6f4"
-    background_darkness = 0.75
-    background_type = transparent
-    font = Geist Mono Medium 10
-    show_titlebar = False
-    use_system_font = False
-    copy_on_selection = True
-    scrollbar_position = hidden
-    scroll_on_keystroke = False
 [layouts]
   [[default]]
     [[[window0]]]

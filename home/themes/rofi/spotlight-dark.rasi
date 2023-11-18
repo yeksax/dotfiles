@@ -7,13 +7,13 @@
 * {
     font:   "Geist Medium 10";
 
-    bg0:    #000000bb;
-    bg1:    #6a6b6f80;
-    bg2:    #D4B483E6;
+    bg0:    #1e1e2eaa;
+    bg1:    #181825;
+    bg2:    #a6e3a1;
 
-    fg0:    #E4DFDA;
-    fg1:    #E4DFDA;
-    fg2:    #DEDEDE80;
+    fg0:    #cdd6f4;
+    fg1:    #1e1e2e;
+    fg2:    #a6adc8;
 
     background-color:   transparent;
     text-color:         @fg0;
@@ -27,7 +27,7 @@ window {
     background-color:   @bg0;
 
     location:       center;
-    width:          560;
+    width:          480;
     border-radius:  6;
 }
 

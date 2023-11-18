@@ -47,8 +47,10 @@ shadow-exclude = [
 #  unless no-fading-openclose is used.
 # fading = false
 fading = true;
-fade-in-step = 0.25;
-fade-out-step = 0.25;
+fade-in-step = 0.05;
+fade-out-step = 0.05;
+
+fade-exclude = [ "class_g ~= '^(?!.*(Dunst))'" ];
 
 # fade-delta = 10
 # fade-exclude = []

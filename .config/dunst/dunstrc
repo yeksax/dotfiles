@@ -85,7 +85,7 @@
     padding = 8
 
     # Horizontal padding.
-    horizontal_padding = 16
+    horizontal_padding = 8
 
     # Padding between text and icon.
     text_icon_padding = 24
@@ -317,7 +317,7 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#1e1e2e"
-    foreground = "#cdd6f4"
+    foreground = "#a6e3a1"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
@@ -332,7 +332,7 @@
 [urgency_critical]
     background = "#1e1e2e"
     foreground = "#f2cdcd"
-    timeout = 0
+    timeout = 5
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon
 
