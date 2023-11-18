@@ -1,2 +1,2 @@
-PS1="%n@%m:%~%# "
-PROMPT="%F{green}%n%f@%F{black}%m%f%F{blue}%1  ~%f %F{blue}➜%1  "
+PS1="%F{blue}%n%f@%F{black}%m%f%F{green}%1  ~%f %F{green}$%1  "
+PROMPT='%F{blue}%n%f@%F{black}%m%f%F{green} %1~ %F{green}%(?..%F{green}%F{red})$%f '

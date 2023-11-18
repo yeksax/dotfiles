@@ -2,7 +2,7 @@
 
 HISTFILE=~/.zsh/.zsh_history
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --all'
 alias grep='grep --color=auto'
 
 bindkey '^[[1;5C' forward-word
