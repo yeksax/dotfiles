@@ -44,6 +44,10 @@ mkdir -p videos documents pictures downloads .config
 cd ~/.config
 rm -rf btop dconf dunst gtk-3.0 i3 nvim picom polybar rofi terminator yay greenclip.toml
 
+cd ~/.config
+rm -rf .fonts .zsh ascii scripts themes wallpapers
+
+
 # sets zsh as default
 sudo chsh $USER -s $(which zsh)
 
