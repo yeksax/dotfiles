@@ -6,4 +6,4 @@ GREEN='%{F#a6e3a1}'
 MIC_ON="echo $GREEN"
 MIC_OFF="echo $RED"
 
-pactl get-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo | awk '/Mute: yes/ { system("'"$MIC_OFF"'") } /Mute: no/ { system("'"$MIC_ON"'") }'
+pactl get-source-mute alsa_input.pci-0000_00_1f.3.11.analog-stereo | awk '/Mute: yes/ { system("'"$MIC_OFF"'") } /Mute: no/ { system("'"$MIC_ON"'") }'
