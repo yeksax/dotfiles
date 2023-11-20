@@ -10,7 +10,7 @@ sudo ln -s $(pwd)/system/pacman.conf /etc/pacman.conf
 sudo ln -s $(pwd)/system/logind.conf /etc/systemd/logind.conf
 
 # installs packages, a lot of them
-sudo pacman -Syyu --noconfirm --needed git base-devel tldr wget neovim vim zsh feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip terminator xclip
+sudo pacman -Syyu --noconfirm --needed git base-devel tldr wget neovim vim zsh feh dconf xorg lightdm lightdm-gtk-greeter i3-wm i3lock picom nodejs npm unzip neofetch scrot alsa-utils rofi noto-fonts noto-fonts-emoji noto-fonts-extra light bc jq vlc xautomation playerctl ttf-font-awesome polybar ffmpeg ffmpegthumbnailer p7zip terminator xclip dunst
 
 # installs yay
 git clone https://aur.archlinux.org/yay-bin.git
