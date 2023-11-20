@@ -51,13 +51,6 @@ return require("packer").startup(function(use)
   }
 
   use({
-    "olivercederborg/poimandres.nvim",
-    config = function()
-      require("poimandres").setup({})
-    end,
-  })
-
-  use({
     "folke/trouble.nvim",
     config = function()
       require("trouble").setup({
@@ -109,6 +102,12 @@ return require("packer").startup(function(use)
   use("bluz71/vim-nightfly-colors")
   use("bluz71/vim-moonfly-colors")
   use("savq/melange-nvim")
+  use({
+    "olivercederborg/poimandres.nvim",
+    config = function()
+      require("poimandres").setup({})
+    end,
+  })
 
 
   if packer_bootstrap then

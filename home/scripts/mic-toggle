@@ -1,4 +1,4 @@
 #!/bin/bash
 
 pactl set-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo toggle
-pactl get-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo | awk '/Mute: yes/ { system("notify-send -r 99999 -u critical \"  Microfone Mutado\"") } /Mute: no/ { system("notify-send -r 99999 -u low \"  Microfone Desmutado\"") }'
+pactl get-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo | awk '/Mute: yes/ { system("notify-send -r 99999 --app-name=\"MicrophoneStatus\" -u critical \"  Microfone Silenciado\"") } /Mute: no/ { system("notify-send --app-name=\"MicrophoneStatus\" -r 99999 -u low \"  Microfone Ativo\"") }'

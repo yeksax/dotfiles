@@ -165,6 +165,7 @@ for_window [instance="__scratchpad"] move scratchpad
 exec_always picom --config ~/.config/picom/picom
 exec_always xrandr --output Virtual-1 --mode 1360x768
 exec_always feh --bg-fill "$HOME/wallpapers/ALLqk82.png"
+bindsym $mod+Shift+w exec feh -z --bg-fill "$HOME/wallpapers"
 
 # mouse sensibility (edit last value to change)
 exec xinput set-prop "Logitech G403 HERO Gaming Mouse" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.5

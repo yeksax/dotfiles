@@ -33,13 +33,13 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 10x50
+    offset = 10x40
 
     # Scale factor. It is auto-detected if value is 0.
-    scale = 0
+    scale = 1
 
     # Maximum number of notification (0 means no limit)
-    notification_limit = 20
+    notification_limit = 0
 
     ### Progress bar ###
 
@@ -85,7 +85,7 @@
     padding = 8
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 16
 
     # Padding between text and icon.
     text_icon_padding = 24
@@ -163,7 +163,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b          "
+    format = "<b>%s</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -299,9 +299,6 @@
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
-[ignore]
-  appname = "Spotify"
-
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
 [experimental]
@@ -317,7 +314,7 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#1e1e2e"
-    foreground = "#a6e3a1"
+    foreground = "#cdd6f4"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
@@ -331,7 +328,7 @@
 
 [urgency_critical]
     background = "#1e1e2e"
-    foreground = "#f2cdcd"
+    foreground = "#cdd6f4"
     timeout = 5
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon
@@ -339,6 +336,16 @@
 [chromium-fix]
   appname = Chromium
   format = "<b>%s</b> %b"
+
+[mic-toggle-on]
+  appname = MicrophoneStatus
+  msg_urgency = low
+  foreground = "#a6e3a1"
+
+[mic-toggle-off]
+  appname = MicrophoneStatus
+  msg_urgency = critical
+  foreground = "#f2cdcd"
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

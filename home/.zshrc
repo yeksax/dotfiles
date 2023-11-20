@@ -14,7 +14,7 @@ alias grep='grep --color=auto'
 alias neofetch='fm6000 -f ~/ascii/arch.txt -c blue -nd -os "arch linux"'
 # traição acima, desculpa...
 
-source ~/.zsh/plugins/zsh-vi-mode.zsh
+# source ~/.zsh/plugins/zsh-vi-mode.zsh
 source ~/.zsh/plugins/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting.zsh
 source ~/.zsh/themes/yeksax.zsh

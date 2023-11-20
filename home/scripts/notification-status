@@ -1,0 +1,15 @@
+#!/bin/bash
+
+RED='%{F#f38ba8}'
+GREEN='%{F#a6e3a1}'
+
+IS_PAUSED=$(dunstctl is-paused)
+
+NOTIFICATION_ON="echo $GREEN"
+NOTIFICATION_OFF="echo $RED"
+
+if [ "$IS_PAUSED" = "false" ]; then
+  $NOTIFICATION_ON
+else
+  $NOTIFICATION_OFF
+fi
