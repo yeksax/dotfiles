@@ -5,6 +5,9 @@ lsp.preset("recommended")
 lsp.ensure_installed({
 	"tsserver",
 	"eslint",
+  "html",
+  "lua_ls",
+  "svelte",
 })
 
 lsp.nvim_workspace()

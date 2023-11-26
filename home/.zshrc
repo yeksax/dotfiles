@@ -18,3 +18,10 @@ alias neofetch='fm6000 -f ~/ascii/arch.txt -c blue -nd -os "arch linux"'
 source ~/.zsh/plugins/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting.zsh
 source ~/.zsh/themes/yeksax.zsh
+
+# bun completions
+[ -s "/home/yeksax/.bun/_bun" ] && source "/home/yeksax/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

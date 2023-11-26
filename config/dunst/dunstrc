@@ -61,10 +61,10 @@
     progress_bar_max_width = 300
 
     # Corner radius for the progress bar. 0 disables rounded corners.
-    progress_bar_corner_radius = 2
+    progress_bar_corner_radius = 10
 
     # Corner radius for the icon image.
-    icon_corner_radius = 4
+    icon_corner_radius = 6
 
     # Show how many messages are currently hidden (because of
     # notification_limit).
@@ -85,7 +85,7 @@
     padding = 8
 
     # Horizontal padding.
-    horizontal_padding = 16
+    horizontal_padding = 8
 
     # Padding between text and icon.
     text_icon_padding = 24
@@ -164,6 +164,7 @@
     #   %%  Literal %
     # Markup is allowed
     format = "<b>%s</b>\n%b"
+    highlight = "#89b4fa"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -338,12 +339,12 @@
   format = "<b>%s</b> %b"
 
 [mic-toggle-on]
-  appname = MicrophoneStatus
+  appname = MicToggle
   msg_urgency = low
   foreground = "#a6e3a1"
 
 [mic-toggle-off]
-  appname = MicrophoneStatus
+  appname = MicToggle
   msg_urgency = critical
   foreground = "#f2cdcd"
 
