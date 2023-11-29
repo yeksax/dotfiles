@@ -2,3 +2,7 @@
 *.bkp
 node_modules
 backup
+.zsh_history
+*.swp
+*.swo
+*.tmp

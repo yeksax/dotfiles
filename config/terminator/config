@@ -7,7 +7,7 @@
   toggle_zoom = <Primary>apostrophe
 [profiles]
   [[default]]
-    background_color = "#181825"
+    background_color = "#222222"
     background_darkness = 0.75
     background_type = transparent
     font = Geist Mono Medium 10

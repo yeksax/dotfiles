@@ -1,4 +1,9 @@
 require("nvim-tree").setup({
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+  },
   sort_by = "case_sensitive",
   filters = {
     dotfiles = false,
@@ -13,7 +18,6 @@ require("nvim-tree").setup({
     icons = {
       show = {
         git = false,
-
       },
     },
   },

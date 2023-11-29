@@ -75,7 +75,16 @@ return require("packer").startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = function()
-      require('Comment').setup()
+      require('Comment').setup {
+        padding = true,
+        sticky = true,
+        toggler = {
+          ---Line-comment toggle keymap
+          line = 'gcc',
+          ---Block-comment toggle keymap
+          block = 'gbc',
+        },
+      }
     end
   }
 
@@ -102,6 +111,7 @@ return require("packer").startup(function(use)
   use("bluz71/vim-nightfly-colors")
   use("bluz71/vim-moonfly-colors")
   use("savq/melange-nvim")
+  use('andweeb/presence.nvim')
   use({
     "olivercederborg/poimandres.nvim",
     config = function()
