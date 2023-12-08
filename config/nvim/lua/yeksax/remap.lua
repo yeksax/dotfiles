@@ -2,8 +2,25 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
 vim.keymap.set("n", "<C-b>", ":NvimTreeFocus<CR>")
 
-vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>t", "<C-w>s <C-w>j :term<CR> :resize 10<CR> i", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-Up>", ":m .-2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-Down>", ":m .+1<CR>", { noremap = true, silent = true })
+
+-- Move linhas para cima ou para baixo no modo insert
+vim.keymap.set('i', '<C-Up>', '<Esc>:m .-2<CR>i', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-Down>', '<Esc>:m .+1<CR>i', { noremap = true, silent = true })
+
+-- Move linhas para cima ou para baixo no modo visual
+vim.keymap.set('x', '<C-Up>', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true })
+vim.keymap.set('x', '<C-Down>', ':m \'>+1<CR>gv=gv', { noremap = true, silent = true })
+
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true })
+vim.keymap.set("n", "<leader>t", "<C-w>s <C-w>j :term<CR> :resize 10<CR> i", { noremap = true, silent = true })
+
+-- vim.keymap.set("i", "(", "()<left>")
+-- vim.keymap.set("i", "[", "[]<left>")
+-- vim.keymap.set("i", "{", "{}<left>")
+-- vim.keymap.set("i", '"', '""<left>')
+-- vim.keymap.set("i", "'", "''<left>")
 
 vim.keymap.set("n", "<leader>f", "<cmd>LspZeroFormat<CR>")
 
@@ -41,5 +58,5 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/yeksax/packer.lua<
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
 
 vim.keymap.set("n", "<leader><leader>", function()
-  vim.cmd("w")
+    vim.cmd("w")
 end)

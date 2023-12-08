@@ -5,9 +5,9 @@
  *******************************************************************************/
 
 * {
-    font:   "Geist Medium 10";
+    font:   "Geist Mono 10";
 
-    bg0:    #1e1e2eaa;
+    bg0:    #111111cc;
     bg1:    #181825;
     bg2:    #a6e3a1;
 
@@ -32,7 +32,7 @@ window {
 }
 
 inputbar {
-    font:       "Geist Mono 11";
+    font:       "JetBrainsMonoNL Nerd Font 11";
     padding:    18px 24px;
     spacing:    12px;
     children:   [ entry, icon-search ];

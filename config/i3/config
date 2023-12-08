@@ -167,10 +167,11 @@ default_floating_border none
 
 # setting defaults
 for_window [instance="__scratchpad"] move scratchpad
+for_window [class="org.gnome.Nautilus"] floating enable
 
 exec_always picom --config ~/.config/picom/picom
 exec_always xrandr --output Virtual-1 --mode 1360x768
-exec_always feh --bg-fill "$HOME/wallpapers/solar-system.jpg"
+exec_always feh --bg-fill "$HOME/wallpapers/ALLqk82.png"
 bindsym $mod+Shift+w exec feh -z --bg-fill "$HOME/wallpapers"
 
 # mouse sensibility (edit last value to change)
@@ -186,8 +187,6 @@ exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Natural S
 
 
 # shortcuts
-# lock
-bindsym $mod+x exec ~/.config/i3/scripts/lock
 
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -219,9 +218,10 @@ bindsym --release $mod1+Sys_Req exec scrot -u -q 100 "/home/$USER/pictures/%F_%T
 # media/audio control
 
 # mute/unmute mic
-bindsym --whole-window $mod+Shift+button9 exec ~/scripts/mic-toggle
-bindsym --whole-window $mod+Shift+m exec ~/scripts/mic-toggle
-bindsym --whole-window $mod+Shift+n exec ~/scripts/notification-toggle
+bindsym $mod+Shift+button9 exec ~/scripts/mic-toggle
+bindsym $mod+Shift+m exec ~/scripts/mic-toggle
+bindsym $mod+Shift+n exec ~/scripts/notification-toggle
+bindsym $mod+n exec dunstctl history-pop
 
 # exec amixer sset Master 30%,51%
 

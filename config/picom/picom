@@ -76,9 +76,10 @@ inactive-opacity-override = false;
 # inactive-dim-fixed = 1.0
 
 opacity-rule = [
-  "100:class_g = 'firefox'",
-  "100:class_g = 'Chromium'",
-  "100:class_g = 'rocketleague.exe'",
+    "75:class_g *?= 'Rofi'",
+    "100:class_g = 'firefox'",
+    "100:class_g = 'Chromium'",
+    "100:class_g = 'rocketleague.exe'",
 ];
 
 #################################
@@ -135,8 +136,8 @@ blur-kern = "3x3box"
 # Specify the backend to use: `xrender`, `glx`, or `xr_glx_hybrid`.
 # `xrender` is the default one.
 #
-# backend = "glx"
-backend = "xrender";
+backend = "glx"
+# backend = "xrender";
 
 # Enable/disable VSync.
 # vsync = false

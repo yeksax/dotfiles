@@ -38,9 +38,14 @@ sudo systemctl enable lightdm.service
 
 # create some base directories
 cd ~
-mkdir -p videos documents pictures downloads .config
+mkdir -p drive .config
+
+cd drive
+mkdir -p videos documents pictures downloads
+ln -s * .* ~
 
 # deletes conflicting directories
+cd ~
 rm -rf .fonts .zsh .zshrc .profile .gitconfig ascii scripts themes wallpapers
 
 # deletes conflicting directories
