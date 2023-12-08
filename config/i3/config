@@ -171,7 +171,7 @@ for_window [class="org.gnome.Nautilus"] floating enable
 
 exec_always picom --config ~/.config/picom/picom
 exec_always xrandr --output Virtual-1 --mode 1360x768
-exec_always feh --bg-fill "$HOME/wallpapers/ALLqk82.png"
+exec_always feh --bg-fill "$HOME/wallpapers/dock.jpg"
 bindsym $mod+Shift+w exec feh -z --bg-fill "$HOME/wallpapers"
 
 # mouse sensibility (edit last value to change)
