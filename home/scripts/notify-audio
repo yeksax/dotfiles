@@ -7,4 +7,4 @@ right_percentage=$(echo "$volume_info" | awk -F 'front-right:' 'NR==1 {print $2}
 
 max_percentage=$((left_percentage > right_percentage ? left_percentage : right_percentage))
 
-dunstify -a bottom-center -r 99998 -u normal -h int:value:$max_percentage " Audio             $max_percentage%" -t 1000
+dunstify -a bottom-center -r 99999 -u normal -h int:value:$max_percentage " Audio                 $max_percentage%" -t 1000

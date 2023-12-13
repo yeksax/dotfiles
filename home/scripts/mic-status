@@ -1,9 +1,10 @@
 #!/bin/bash
 
-RED='%{F#f38ba8}'
-GREEN='%{F#a6e3a1}'
+# NOK='%{F#f38ba8}'
+NOK='%{F#a6adc8}'
+OK='%{F#f5e0dc}'
 
-MIC_ON="echo $GREEN"
-MIC_OFF="echo $RED"
+MIC_ON="echo $OK"
+MIC_OFF="echo $NOK"
 
 pactl get-source-mute 1 | awk '/Mute: sim/ { system("'"$MIC_OFF"'") } /Mute: não/ { system("'"$MIC_ON"'") }'

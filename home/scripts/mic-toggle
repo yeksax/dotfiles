@@ -1,4 +1,9 @@
 #!/bin/bash
 
 pactl set-source-mute 1 toggle
-pactl get-source-mute 1 | awk '/Mute: sim/ { system("notify-send -r 99999 -a MicToggle -u critical \"  Microfone Silenciado\"") } /Mute: não/ { system("notify-send -a MicToggle -r 99999 -u low \"  Microfone Ativo\"") }'
+pactl get-source-mute 1 | awk '/Mute: sim/ { system("notify-send -r 99999 -a MicToggle -u critical \"  Shhh\"") } /Mute: não/ { system("notify-send -a MicToggle -r 99999 -u low \"  Mic on\"") }'
+
+PARENT_BAR="main"
+PARENT_BAR_PID=$(pgrep -a "polybar" | grep "$PARENT_BAR" | cut -d" " -f1)
+
+polybar-msg -p $PARENT_BAR_PID action microphone hook 0

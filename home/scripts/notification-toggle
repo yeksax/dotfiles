@@ -1,1 +1,8 @@
+#!/bin/bash
+
 dunstctl set-paused toggle
+
+PARENT_BAR="main"
+PARENT_BAR_PID=$(pgrep -a "polybar" | grep "$PARENT_BAR" | cut -d" " -f1)
+
+polybar-msg -p $PARENT_BAR_PID action notifications hook 0

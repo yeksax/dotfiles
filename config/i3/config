@@ -160,6 +160,7 @@ bindsym $mod+r mode "resize"
 
 # starting polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id killall dunst
 
 # removing borders
 default_border none
@@ -169,10 +170,15 @@ default_floating_border none
 for_window [instance="__scratchpad"] move scratchpad
 for_window [class="org.gnome.Nautilus"] floating enable
 
+exec i3-sensible-terminal && i3-msg move scratchpad
+
+set $wallpaper $HOME/wallpapers/waveish.jpg
+
 exec_always picom --config ~/.config/picom/picom
 exec_always xrandr --output Virtual-1 --mode 1360x768
-exec_always feh --bg-fill "$HOME/wallpapers/dock.jpg"
+exec_always feh --bg-fill $wallpaper
 bindsym $mod+Shift+w exec feh -z --bg-fill "$HOME/wallpapers"
+bindsym $mod+Ctrl+w exec feh --bg-fill $wallpaper
 
 # mouse sensibility (edit last value to change)
 exec xinput set-prop "Logitech G403 HERO Gaming Mouse" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.5
@@ -233,8 +239,8 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/scripts/notify-brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/scripts/notify-brightness
 
 # gaps
 gaps inner 6

@@ -16,6 +16,7 @@ export PATH=$PATH:$HOME/go/bin
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias yt-dlp='yt-dlp -P ~/downloads -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"'
 # alias neofetch='fm6000 -f ~/ascii/arch.txt -c blue -nd -os "arch linux"'
 # traição acima, desculpa...
 
