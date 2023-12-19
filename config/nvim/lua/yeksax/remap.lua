@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
+vim.keymap.set("n", "<leader>pv", ":NvimTreeFocus<CR>")
 vim.keymap.set("n", "<C-b>", ":NvimTreeFocus<CR>")
 
 vim.keymap.set("n", "<C-Up>", ":m .-2<CR>", { noremap = true, silent = true })

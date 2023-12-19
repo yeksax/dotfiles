@@ -107,16 +107,16 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+1 move container to workspace number $ws1 workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2 workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3 workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4 workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5 workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6 workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7 workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8 workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9 workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10 workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -172,7 +172,7 @@ for_window [class="org.gnome.Nautilus"] floating enable
 
 exec i3-sensible-terminal && i3-msg move scratchpad
 
-set $wallpaper $HOME/wallpapers/waveish.jpg
+set $wallpaper "$HOME/wallpapers/waveish.jpg"
 
 exec_always picom --config ~/.config/picom/picom
 exec_always xrandr --output Virtual-1 --mode 1360x768
@@ -206,6 +206,9 @@ bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Ctrl+Tab workspace back_and_forth
 
+# show time
+bindsym $mod+t exec ~/scripts/notify-datetime
+
 # polybar
 bindsym $mod+p exec polybar-msg cmd toggle
 
@@ -217,14 +220,13 @@ exec --no-startup-id greenclip daemon>/dev/null
 bindsym $mod+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard
 
 # screenshots
-bindsym --release Print exec scrot -q 80 "/home/$USER/pictures/%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
-bindsym --release Ctrl+Print exec scrot -s -f -q 100 "/home/$USER/pictures/%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
-bindsym --release $mod1+Sys_Req exec scrot -u -q 100 "/home/$USER/pictures/%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
+bindsym --release Print exec scrot -q 80 "/home/$USER/pictures/screenshots/%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
+bindsym --release Ctrl+Print exec scrot -s -f -q 100 "/home/$USER/pictures/screenshots/%%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
+bindsym --release $mod1+Sys_Req exec scrot -u -q 100 "/home/$USER/pictures/screenshots/%%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
 
 # media/audio control
 
 # mute/unmute mic
-bindsym $mod+Shift+button9 exec ~/scripts/mic-toggle
 bindsym $mod+Shift+m exec ~/scripts/mic-toggle
 bindsym $mod+Shift+n exec ~/scripts/notification-toggle
 bindsym $mod+n exec dunstctl history-pop
@@ -233,7 +235,7 @@ bindsym $mod+n exec dunstctl history-pop
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +3.7% +5% && ~/scripts/notify-audio
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -3.7% -5% && ~/scripts/notify-audio
-bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
