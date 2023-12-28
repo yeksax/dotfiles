@@ -169,10 +169,11 @@ default_floating_border none
 # setting defaults
 for_window [instance="__scratchpad"] move scratchpad
 for_window [class="org.gnome.Nautilus"] floating enable
+assign [class="VSCodium"] $ws1
 
 exec i3-sensible-terminal && i3-msg move scratchpad
 
-set $wallpaper "$HOME/wallpapers/waveish.jpg"
+set $wallpaper "$HOME/wallpapers/hostea.jpg"
 
 exec_always picom --config ~/.config/picom/picom
 exec_always xrandr --output Virtual-1 --mode 1360x768
@@ -245,7 +246,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/scripts/notify-
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/scripts/notify-brightness
 
 # gaps
-gaps inner 6
+gaps inner 2
 gaps outer 0
 
 # color shemes for windows

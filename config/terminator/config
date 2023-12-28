@@ -2,6 +2,7 @@
   geometry_hinting = True
   borderless = True
   hide_from_taskbar = True
+  suppress_multiple_term_dialog = True
   smart_copy = False
   case_sensitive = False
 [keybindings]
