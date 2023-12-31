@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # NOK='%{F#f38ba8}'
-NOK='%{F#a6adc8}'
-OK='%{F#f5e0dc}'
+NOK='%{F#fb4934}'
+OK='%{F#b8bb26}'
 
 IS_PAUSED=$(dunstctl is-paused)
 

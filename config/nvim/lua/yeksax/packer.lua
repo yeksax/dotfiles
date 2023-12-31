@@ -106,12 +106,13 @@ return require("packer").startup(function(use)
   -- themes
   use("rebelot/kanagawa.nvim")
   use("catppuccin/nvim")
-  use("ellisonleao/gruvbox.nvim")
   use("folke/tokyonight.nvim")
   use("bluz71/vim-nightfly-colors")
   use("bluz71/vim-moonfly-colors")
   use("savq/melange-nvim")
   use('andweeb/presence.nvim')
+  use("ellisonleao/gruvbox.nvim")
+
   use({
     "olivercederborg/poimandres.nvim",
     config = function()

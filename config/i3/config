@@ -161,6 +161,7 @@ bindsym $mod+r mode "resize"
 # starting polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id killall dunst
+bindsym $mod+Shift+p exec polybar-msg cmd restart
 
 # removing borders
 default_border none
@@ -169,7 +170,15 @@ default_floating_border none
 # setting defaults
 for_window [instance="__scratchpad"] move scratchpad
 for_window [class="org.gnome.Nautilus"] floating enable
+
+# workspace automove
+for_window [class="VirtualBox Machine"] move container to workspace $ws4
 assign [class="VSCodium"] $ws1
+assign [class="firefox"] $ws2
+assign [class="discord"] $ws3
+assign [class="Spotify"] $ws9
+assign [class="obsidian"] $ws3
+assign [class="obs"] $ws10
 
 exec i3-sensible-terminal && i3-msg move scratchpad
 
@@ -183,9 +192,6 @@ bindsym $mod+Ctrl+w exec feh --bg-fill $wallpaper
 
 # mouse sensibility (edit last value to change)
 exec xinput set-prop "Logitech G403 HERO Gaming Mouse" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.5
-
-# workspace automove
-for_window [class="VirtualBox Machine"] move container to workspace $ws4
 
 # laptop settins
 exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Tapping Enabled" 1
@@ -205,7 +211,7 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Tab workspace back_and_forth
-bindsym $mod+Ctrl+Tab workspace back_and_forth
+bindsym $mod+Ctrl+Tab workspace next
 
 # show time
 bindsym $mod+t exec ~/scripts/notify-datetime
@@ -222,8 +228,8 @@ bindsym $mod+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show
 
 # screenshots
 bindsym --release Print exec scrot -q 80 "/home/$USER/pictures/screenshots/%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
-bindsym --release Ctrl+Print exec scrot -s -f -q 100 "/home/$USER/pictures/screenshots/%%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
-bindsym --release $mod1+Sys_Req exec scrot -u -q 100 "/home/$USER/pictures/screenshots/%%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
+bindsym --release Ctrl+Print exec scrot -s -f -q 100 "/home/$USER/pictures/screenshots/%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
+bindsym --release $mod1+Sys_Req exec scrot -u -q 100 "/home/$USER/pictures/screenshots/%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
 
 # media/audio control
 
@@ -246,7 +252,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/scripts/notify-
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/scripts/notify-brightness
 
 # gaps
-gaps inner 2
+gaps inner 4
 gaps outer 0
 
 # color shemes for windows

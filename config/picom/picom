@@ -45,8 +45,8 @@ shadow-exclude = [
 
 # Fade windows in/out when opening/closing and when opacity changes,
 #  unless no-fading-openclose is used.
-fading = false
-# fading = true;
+# fading = false
+fading = true;
 fade-in-step = 0.05;
 fade-out-step = 0.05;
 

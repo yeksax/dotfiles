@@ -17,9 +17,8 @@ export PATH=$PATH:$HOME/go/bin
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias yt-dlp='yt-dlp -P ~/downloads -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" -S "codec:h264"'
-# alias neofetch='fm6000 -f ~/ascii/arch.txt -c blue -nd -os "arch linux"'
-# traição acima, desculpa...
 alias mc="LANG=en_EN.UTF-8 mc"
+alias grive-sync="cd $HOME/drive && grive -P"
 
 # source ~/.zsh/plugins/zsh-vi-mode.zsh
 source ~/.zsh/plugins/zsh-autosuggestions.zsh

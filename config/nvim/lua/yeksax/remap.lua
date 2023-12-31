@@ -59,4 +59,7 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("w")
+    if vim.bo.filetype == 'lua' then
+        vim.cmd("luafile %")
+    end
 end)
