@@ -60,6 +60,7 @@ sudo chsh $USER -s $(which zsh)
 cd $BASE_DIR
 ln -s $(pwd)/config/* $(pwd)/config/.* ~/.config/
 ln -s $(pwd)/home/* $(pwd)/home/.* ~/
+ln -s $(pwd)/home/themes/mc /home/$USER/.local/share/mc/skins
 
 # for screen brightness control
 sudo chmod +s $(which light)

@@ -76,7 +76,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle resize set 720 550, move absolute position center
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -169,12 +169,14 @@ default_floating_border none
 
 # setting defaults
 for_window [instance="__scratchpad"] move scratchpad
-for_window [class="org.gnome.Nautilus"] floating enable
+for_window [class="org.gnome.Nautilus"] floating enable resize set 800 600, move absolute position center
 
 # workspace automove
 for_window [class="VirtualBox Machine"] move container to workspace $ws4
+for_window [class="feh"] floating enable resize set 800 450, move absolute position center
 assign [class="VSCodium"] $ws1
 assign [class="firefox"] $ws2
+assign [class="chromium"] $ws2
 assign [class="discord"] $ws3
 assign [class="Spotify"] $ws9
 assign [class="obsidian"] $ws3
@@ -182,7 +184,7 @@ assign [class="obs"] $ws10
 
 exec i3-sensible-terminal && i3-msg move scratchpad
 
-set $wallpaper "$HOME/wallpapers/hostea.jpg"
+set $wallpaper "$HOME/wallpapers/tranquility.png"
 
 exec_always picom --config ~/.config/picom/picom
 exec_always xrandr --output Virtual-1 --mode 1360x768
@@ -196,7 +198,6 @@ exec xinput set-prop "Logitech G403 HERO Gaming Mouse" "Coordinate Transformatio
 # laptop settins
 exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Tapping Enabled" 1
 exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Natural Scrolling Enabled" 1
-
 
 
 # shortcuts

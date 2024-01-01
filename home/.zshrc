@@ -19,6 +19,8 @@ alias grep='grep --color=auto'
 alias yt-dlp='yt-dlp -P ~/downloads -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" -S "codec:h264"'
 alias mc="LANG=en_EN.UTF-8 mc"
 alias grive-sync="cd $HOME/drive && grive -P"
+alias set-bg="feh --bg-fill"
+alias af="albafetch"
 
 # source ~/.zsh/plugins/zsh-vi-mode.zsh
 source ~/.zsh/plugins/zsh-autosuggestions.zsh
