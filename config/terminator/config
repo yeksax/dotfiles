@@ -12,7 +12,7 @@
     background_color = "#282828"
     background_darkness = 0.62
     background_image = /home/yeksax/downloads/dois 2 cara na porta com pedaço de  madeira pau.jpg
-    font = Monaspace Neon 10
+    font = Monaspace Neon 9
     foreground_color = "#ebdbb2"
     show_titlebar = False
     scrollbar_position = hidden

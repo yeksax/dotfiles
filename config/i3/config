@@ -78,6 +78,9 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle resize set 720 550, move absolute position center
 
+# center current window
+bindsym $mod+c move absolute position center
+
 # focus the parent container
 bindsym $mod+a focus parent
 
@@ -204,8 +207,6 @@ exec_always xinput set-prop "ATML3000:00 03EB:2168 Touchpad" "libinput Natural S
 
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
-
-# reopen any scratchpad
 bindsym $mod+minus scratchpad show
 
 # switching workspaces
@@ -232,15 +233,14 @@ bindsym --release Print exec scrot -q 80 "/home/$USER/pictures/screenshots/%F_%T
 bindsym --release Ctrl+Print exec scrot -s -f -q 100 "/home/$USER/pictures/screenshots/%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
 bindsym --release $mod1+Sys_Req exec scrot -u -q 100 "/home/$USER/pictures/screenshots/%F_%T_$wx$h.jpg" -e 'xclip -selection clipboard -target image/png -i $f'
 
-# media/audio control
-
 # mute/unmute mic
 bindsym $mod+Shift+m exec ~/scripts/mic-toggle
 bindsym $mod+Shift+n exec ~/scripts/notification-toggle
+
+# display last notification
 bindsym $mod+n exec dunstctl history-pop
 
-# exec amixer sset Master 30%,51%
-
+# media keys
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +3.7% +5% && ~/scripts/notify-audio
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -3.7% -5% && ~/scripts/notify-audio
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
@@ -251,6 +251,9 @@ bindsym XF86AudioPrev exec playerctl previous
 # brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/scripts/notify-brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/scripts/notify-brightness
+
+# screekeys
+bindsym $mod+Shift+s exec ~/scripts/toggle-screenkey
 
 # gaps
 gaps inner 4
