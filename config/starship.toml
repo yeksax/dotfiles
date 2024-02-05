@@ -1,6 +1,8 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+format = '$all'
+
 # Inserts a blank line between shell prompts
 add_newline = false
 
@@ -11,3 +13,10 @@ success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
+
+[git_branch]
+style = 'bold yellow'
+format = 'on branch [$branch(:$remote_branch)]($style) '
+
+[directory]
+style = "green bold"

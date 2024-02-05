@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", ":NvimTreeFocus<CR>")
+vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<CR>")
 vim.keymap.set("n", "<C-b>", ":NvimTreeFocus<CR>")
 
 vim.keymap.set("n", "<C-Up>", ":m .-2<CR>", { noremap = true, silent = true })
@@ -16,6 +16,25 @@ vim.keymap.set('x', '<C-Down>', ':m \'>+1<CR>gv=gv', { noremap = true, silent = 
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true })
 vim.keymap.set("n", "<leader>t", "<C-w>s <C-w>j :term<CR> :resize 10<CR> i", { noremap = true, silent = true })
 
+-- vim.keymap.set(
+--     { "n", "o", "x" },
+--     "w",
+--     "<cmd>lua require('spider').motion('w')<CR>",
+--     { desc = "Spider-w" }
+-- )
+-- vim.keymap.set(
+--     { "n", "o", "x" },
+--     "e",
+--     "<cmd>lua require('spider').motion('e')<CR>",
+--     { desc = "Spider-e" }
+-- )
+-- vim.keymap.set(
+--     { "n", "o", "x" },
+--     "b",
+--     "<cmd>lua require('spider').motion('b')<CR>",
+--     { desc = "Spider-b" }
+-- )
+
 -- vim.keymap.set("i", "(", "()<left>")
 -- vim.keymap.set("i", "[", "[]<left>")
 -- vim.keymap.set("i", "{", "{}<left>")
@@ -23,6 +42,7 @@ vim.keymap.set("n", "<leader>t", "<C-w>s <C-w>j :term<CR> :resize 10<CR> i", { n
 -- vim.keymap.set("i", "'", "''<left>")
 
 vim.keymap.set("n", "<leader>f", "<cmd>LspZeroFormat<CR>")
+vim.keymap.set({ "n", "v", "i" }, "<A-f>", "<cmd>Format<CR>")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

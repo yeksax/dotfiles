@@ -1,0 +1,98 @@
+/*******************************************************************************
+ * MACOS SPOTLIGHT LIKE DARK THEME FOR ROFI
+ * User                 : LR-Tech
+ * Theme Repo           : https://github.com/lr-tech/rofi-themes-collection
+ *******************************************************************************/
+
+* {
+    font:   "JetBrainsMonoNL Nerd Font 10.5";
+
+    bg0:    #282828;
+    bg1:    #32302f;
+    bg2:    #3c3836;
+
+    fg0:    #ebdbb2;
+    fg1:    #ebdbb2;
+    fg2:    #d5c4a1;
+
+    background-color:   transparent;
+    text-color:         @fg0;
+
+    margin:     0;
+    padding:    0;
+    spacing:    0;
+}
+
+window {
+    background-color:   @bg0;
+
+    location:       center;
+    width:          520;
+    border-radius:  6;
+}
+
+inputbar {
+    font:       "JetBrainsMonoNL Nerd Font 11";
+    padding:    18px 24px;
+    spacing:    12px;
+    children:   [ entry, icon-search ];
+}
+
+icon-search {
+    expand:     false;
+    filename:   "search";
+    size: 16px;
+}
+
+icon-search, entry, element-icon, element-text {
+    vertical-align: 0.5;
+}
+
+entry {
+    font:   inherit;
+
+    placeholder         : "Search...";
+    placeholder-color   : @fg2;
+}
+
+message {
+    border:             2px 0 0;
+    border-color:       @bg1;
+    background-color:   @bg1;
+}
+
+textbox {
+    padding:    8px 24px;
+}
+
+listview {
+    lines:      8;
+    columns:    1;
+
+    fixed-height:   false;
+    border:         1px 0 0;
+    border-color:   @bg1;
+}
+
+element {
+    padding:            10px 24px;
+    spacing:            16px;
+    background-color:   transparent;
+}
+
+element normal active {
+    text-color: @bg2;
+}
+
+element selected normal, element selected active {
+    background-color:   @bg2;
+    text-color:         @fg1;
+}
+
+element-icon {
+    size:   1em;
+}
+
+element-text {
+    text-color: inherit;
+}

@@ -1,0 +1,45 @@
+#! /bin/python3
+
+import datetime
+import psutil
+
+CALENDAR_ICON = ""
+BATTERY_ICON = ""
+BRIGHTNESS_ICON = ""
+UPTIME_ICON = ""
+
+
+def get_uptime():
+    with open('/proc/uptime', 'r') as f:
+        uptime_seconds = float(f.readline().split()[0])
+
+    return str(datetime.timedelta(seconds=uptime_seconds)).split(".")[0]
+
+
+def get_brightness():
+    with open("/sys/class/backlight/intel_backlight/brightness") as f:
+        return int(f.read()) / 15
+
+
+date = datetime.datetime.now().strftime("%A, %e de %b de %Y - %H:%M")
+battery = psutil.sensors_battery().percent
+brightness = get_brightness()
+uptime = get_uptime()
+
+brightness_text = f"{BRIGHTNESS_ICON:3}{int(brightness)}%"
+battery_text = f"{BATTERY_ICON:3}{int(battery)}%"
+uptime_text = f"{UPTIME_ICON:3}{uptime}"
+
+top = f"{CALENDAR_ICON:4}{date}"
+bottom = f"{brightness_text}%SPACE%{battery_text}%SPACE%{uptime_text}"
+
+bottom_len = len(brightness_text) + len(battery_text) + len(uptime_text)
+gap = (len(top) - bottom_len)//2-1
+
+bottom = bottom.replace("%SPACE%", " " * gap)
+
+while len(bottom) > len(top):
+    bottom = bottom.replace("  ", " ", 1)
+
+print(top)
+print(bottom)

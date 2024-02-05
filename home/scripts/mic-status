@@ -7,4 +7,4 @@ OK='%{F#b8bb26}'
 MIC_ON="echo $OK"
 MIC_OFF="echo $NOK"
 
-pactl get-source-mute 1 | awk '/Mute: sim/ { system("'"$MIC_OFF"'") } /Mute: não/ { system("'"$MIC_ON"'") }'
+pactl get-source-mute @DEFAULT_SOURCE@ | awk '/Mute: yes/ { system("'"$MIC_OFF"'") } /Mute: no/ { system("'"$MIC_ON"'") }'

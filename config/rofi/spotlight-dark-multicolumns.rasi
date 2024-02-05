@@ -5,15 +5,15 @@
  *******************************************************************************/
 
 * {
-    font:   "Geist Mono 10";
+    font:   "JetBrainsMonoNL Nerd Font 10.5";
 
-    bg0:    #101010;
-    bg1:    #181825;
-    bg2:    #a6e3a1;
+    bg0:    #282828;
+    bg1:    #32302f;
+    bg2:    #3c3836;
 
-    fg0:    #cdd6f4;
-    fg1:    #1e1e2e;
-    fg2:    #a6adc8;
+    fg0:    #ebdbb2;
+    fg1:    #ebdbb2;
+    fg2:    #d5c4a1;
 
     background-color:   transparent;
     text-color:         @fg0;
@@ -27,7 +27,7 @@ window {
     background-color:   @bg0;
 
     location:       center;
-    width:          480;
+    width:          520;
     border-radius:  6;
 }
 
@@ -66,8 +66,8 @@ textbox {
 }
 
 listview {
-    lines:      10;
-    columns:    1;
+    lines:      8;
+    columns:    5;
 
     fixed-height:   false;
     border:         1px 0 0;

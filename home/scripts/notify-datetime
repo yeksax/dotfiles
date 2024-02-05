@@ -1,4 +1,0 @@
-#!/bin/bash
-
-TIME=$(date +"%A,%e de %B de %Y - %H:%M")
-dunstify -r 99998 "$TIME"

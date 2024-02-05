@@ -3,9 +3,9 @@
 NOK="Microphone off"
 OK="Microphone on"
 
-pactl set-source-mute 1 toggle
+pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-IS_MUTE=$(pactl get-source-mute 1 | awk '/Mute: sim/ { print "true" }')
+IS_MUTE=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '/Mute: sim/ { print "true" }')
 if [ "$IS_MUTE" = "true" ]; then
     notify-send -r 99999 -a MicToggle -u critical "$NOK"
 else

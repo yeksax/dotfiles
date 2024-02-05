@@ -1,0 +1,18 @@
+#! /bin/env python
+
+import sys
+import json
+import pyperclip
+
+snippet = sys.argv[1]
+
+base = {
+    "Name": {
+        "prefix": "prefix",
+        "description": "description",
+        "body": snippet.splitlines()
+    }
+}
+
+result = json.dumps(base, indent=4)
+pyperclip.copy(result)

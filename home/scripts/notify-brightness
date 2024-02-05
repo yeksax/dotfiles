@@ -2,4 +2,4 @@
 
 brightness=$(light)
 brightness=${brightness%.*}
-dunstify -a bottom-center -r 99999 -u normal -h int:value:$brightness " Brilho               $brightness%" -t 1000
+dunstify -a bottom-center -r 99999 -u normal -h int:value:$brightness "$brightness% " -t 1000

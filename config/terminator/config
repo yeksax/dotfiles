@@ -10,9 +10,9 @@
 [profiles]
   [[default]]
     background_color = "#282828"
-    background_darkness = 0.62
+    background_darkness = 0.95
     background_image = /home/yeksax/downloads/dois 2 cara na porta com pedaço de  madeira pau.jpg
-    font = Monaspace Neon 9
+    font = Geist Mono 10
     foreground_color = "#ebdbb2"
     show_titlebar = False
     scrollbar_position = hidden
@@ -46,4 +46,41 @@
     [[[child1]]]
       type = Terminal
       parent = window0
+  [[SaveLastSessionLayout]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 0:0
+      maximised = False
+      fullscreen = False
+      size = 1350, 709
+      title = /usr/bin/zsh
+      last_active_term = 914cd9bf-7133-4f36-81d5-76c69086a26d
+      last_active_window = True
+    [[[terminal1]]]
+      type = Terminal
+      parent = child0
+      order = 0
+      profile = default
+      uuid = 914cd9bf-7133-4f36-81d5-76c69086a26d
+      directory = /home/yeksax
+    [[[child2]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 232:106
+      maximised = False
+      fullscreen = False
+      size = 902, 556
+      title = /usr/bin/zsh
+      last_active_term = e584170b-cd9b-4d03-a483-b7a78e7fc3af
+      last_active_window = False
+    [[[terminal3]]]
+      type = Terminal
+      parent = child2
+      order = 0
+      profile = default
+      uuid = e584170b-cd9b-4d03-a483-b7a78e7fc3af
+      directory = /home/yeksax
 [plugins]

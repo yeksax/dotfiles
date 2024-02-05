@@ -14,26 +14,56 @@ export TERMINAL=terminator
 export PATH=$PATH:$HOME/scripts
 export PATH=$PATH:$HOME/go/bin
 
+# functions
+function drive-sync() {
+    CURRENT_DIR=$(pwd)
+    cd $HOME/drive && grive -P && cd $CURRENT_DIR
+}
+
+function yt-dl() {
+    yt-dlp --hls-prefer-ffmpeg -P ~/downloads --recode-video mp4 $1 -o $2
+}
+
 # aliases
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias yt-dlp='yt-dlp -P ~/downloads -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" -S "codec:h264"'
-alias mc="LANG=en_EN.UTF-8 mc"
-alias grive-sync="cd $HOME/drive && grive -P"
-alias set-bg="feh --bg-fill"
 alias af="albafetch"
+
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
 alias cat="bat"
-alias cd="z"
+
+alias mc="LANG=en_EN.UTF-8 mc"
+alias set-bg="feh --bg-fill"
+
+alias v="nvim"
+alias vim="nvim"
+
+alias so="source ~/.zshrc"
+alias zshrc="nvim ~/.zshrc && source ~/.zshrc && echo 'zshrc reloaded'"
+
+alias dotfiles="nvim ~/dotfiles"
+alias dots="nvim ~/dotfiles"
+
+alias drive="drive-sync"
+alias grive-sync="drive-sync"
+
+alias dev="bun dev --turbo"
+alias build="bun run build && bun run start"
+alias studio="bunx prisma studio"
+alias ppush="bunx prisma db push && bun dev --turbo"
+
+alias t="tmux"
+alias ta="tmux attach -t"
+alias tls="tmux ls"
+alias tk="tmux kill-session -t"
 
 # plugins
-# source ~/.zsh/plugins/zsh-vi-mode.zsh
 source ~/.zsh/plugins/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting.zsh
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 # themes
-# source ~/.zsh/themes/yeksax.zsh
+source ~/.zsh/themes/yeksax.zsh
 
 # bun completions
 [ -s "/home/yeksax/.bun/_bun" ] && source "/home/yeksax/.bun/_bun"

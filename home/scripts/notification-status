@@ -2,12 +2,12 @@
 
 # NOK='%{F#f38ba8}'
 NOK='%{F#fb4934}'
-OK='%{F#b8bb26}'
+OK='%{F#83a598}'
 
 IS_PAUSED=$(dunstctl is-paused)
 
 if [ "$IS_PAUSED" = "false" ]; then
-    echo $OK
+    echo $OK
 else
-    echo $NOK
+    echo $NOK
 fi
