@@ -30,6 +30,7 @@ for_window [class="VirtualBox Machine"] move container to workspace $ws4
 for_window [class="org.gnome.Nautilus"] floating enable resize set 800 600, move absolute position center
 for_window [class="feh"] floating enable resize set 800 450, move absolute position center
 for_window [class="f_kitty"] floating enable resize set 999 600, move absolute position center, move scratchpad, scratchpad show
+for_window [class="Blueberry.py"] floating enable resize set 999 600, move absolute position center
 for_window [class="steam_app_0"] move container to workspace $ws1
 for_window [class="libreoffice"] move container to workspace $ws8
 assign [class="io.github.celluloid_player.Celluloid"] $ws1
