@@ -25,6 +25,9 @@ function yt-dl() {
 }
 
 # aliases
+alias gd="git diff"
+alias commit="git add . && git commit"
+
 alias af="albafetch"
 
 alias grep='grep --color=auto'
@@ -39,10 +42,10 @@ alias h="helix"
 alias hx="helix"
 
 alias so="source ~/.zshrc"
-alias zshrc="nvim ~/.zshrc && source ~/.zshrc && echo 'zshrc reloaded'"
+alias zshrc="helix ~/.zshrc && source ~/.zshrc && echo 'zshrc reloaded'"
 
-alias dotfiles="nvim ~/dotfiles"
-alias dots="nvim ~/dotfiles"
+alias dotfiles="helix ~/dotfiles"
+alias dots="helix ~/dotfiles"
 
 alias drive="drive-sync"
 alias grive-sync="drive-sync"
