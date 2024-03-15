@@ -8,8 +8,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # env
-export EDITOR=vi
-export VISUAL=vi
+export EDITOR=helix
+export VISUAL=neovim
 export TERMINAL=terminator
 export PATH=$PATH:$HOME/scripts
 export PATH=$PATH:$HOME/go/bin
@@ -35,6 +35,8 @@ alias mc="LANG=en_EN.UTF-8 mc"
 alias set-bg="feh --bg-fill"
 
 alias v="nvim"
+alias h="helix"
+alias hx="helix"
 
 alias so="source ~/.zshrc"
 alias zshrc="nvim ~/.zshrc && source ~/.zshrc && echo 'zshrc reloaded'"
