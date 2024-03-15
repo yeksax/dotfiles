@@ -9,3 +9,5 @@
 	name = Hugo Almeida
 [init]
 	defaultBranch = main
+[core]
+	editor = vim

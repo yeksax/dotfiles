@@ -8,8 +8,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # env
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=vi
+export VISUAL=vi
 export TERMINAL=terminator
 export PATH=$PATH:$HOME/scripts
 export PATH=$PATH:$HOME/go/bin
@@ -35,7 +35,6 @@ alias mc="LANG=en_EN.UTF-8 mc"
 alias set-bg="feh --bg-fill"
 
 alias v="nvim"
-alias vim="nvim"
 
 alias so="source ~/.zshrc"
 alias zshrc="nvim ~/.zshrc && source ~/.zshrc && echo 'zshrc reloaded'"
@@ -48,17 +47,20 @@ alias grive-sync="drive-sync"
 
 alias dev="bun dev --turbo"
 alias build="bun run build && bun run start"
-alias studio="bunx prisma studio"
+alias pstudio="bunx prisma studio"
+alias dstudio="bunx drizzle-kit studio"
 alias ppush="bunx prisma db push && bun dev --turbo"
+alias dpush="bunx drizzle-kit push:pg && bun dev --turbo"
 
 alias t="tmux"
-alias ta="tmux attach -t"
+alias ta="tmux attach"
 alias tls="tmux ls"
 alias tk="tmux kill-session -t"
 
 # plugins
 source ~/.zsh/plugins/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting.zsh
+source ~/.zsh/scripts/pw-pa
 #eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 

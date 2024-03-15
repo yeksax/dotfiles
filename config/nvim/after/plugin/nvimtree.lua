@@ -4,6 +4,9 @@ require("nvim-tree").setup({
             -- quit_on_open = true,
         },
     },
+    update_focused_file = {
+        enable = true,
+    },
     sort_by = "case_sensitive",
     filters = {
         dotfiles = false,
@@ -27,3 +30,4 @@ require("nvim-tree").setup({
         width = 40,
     }
 })
+

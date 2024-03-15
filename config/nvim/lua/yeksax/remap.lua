@@ -41,8 +41,21 @@ vim.keymap.set("n", "<leader>t", "<C-w>s <C-w>j :term<CR> :resize 10<CR> i", { n
 -- vim.keymap.set("i", '"', '""<left>')
 -- vim.keymap.set("i", "'", "''<left>")
 
-vim.keymap.set("n", "<leader>f", "<cmd>LspZeroFormat<CR>")
-vim.keymap.set({ "n", "v", "i" }, "<A-f>", "<cmd>Format<CR>")
+-- vim.keymap.set("n", "<leader>f", "<cmd>LspZeroFormat<CR>")
+-- vim.keymap.set({ "n", "v", "i" }, "<A-f>", "<cmd>Format<CR>")
+
+local function format()
+    local success, result = pcall(function()
+        vim.cmd("Format")
+    end)
+
+    if not result then
+        vim.cmd("LspZeroFormat")
+    end
+end
+
+vim.keymap.set({ "n", "v", "i" }, "<A-f>", format)
+vim.keymap.set({ "n", "v" }, "<leader>f", format)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

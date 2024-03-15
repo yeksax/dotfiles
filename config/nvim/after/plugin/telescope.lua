@@ -3,7 +3,7 @@ vim.keymap.set("n", "<leader>pf", "<Cmd>Telescope frecency workspace=CWD<CR>")
 vim.keymap.set("n", "<C-p>", "<Cmd>Telescope frecency workspace=CWD<CR>")
 vim.keymap.set("i", "<C-p>", "<Esc><Cmd>w<CR><Cmd>Telescope frecency workspace=CWD<CR>")
 vim.keymap.set('n', '<leader>ps', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") })
+    builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 

@@ -116,13 +116,13 @@ return require("packer").startup(function(use)
     use("folke/zen-mode.nvim")
     use("eandrju/cellular-automaton.nvim")
     use("mhartington/formatter.nvim")
-    use("Exafunction/codeium.vim")
     use("tpope/vim-fugitive")
     use("nvim-tree/nvim-tree.lua")
     use("nvim-tree/nvim-web-devicons")
     use 'lewis6991/gitsigns.nvim'
     use 'romgrk/barbar.nvim'
     use 'echasnovski/mini.nvim'
+    use("github/copilot.vim")
 
     -- themes
     use("rebelot/kanagawa.nvim")

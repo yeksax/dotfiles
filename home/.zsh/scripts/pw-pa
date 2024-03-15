@@ -1,0 +1,71 @@
+#!/bin/zsh
+
+# Função para verificar se o Pipewire está em execução
+function pw_running() {
+  if systemctl is-active --quiet pipewire.service; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Função para verificar se o Pulseaudio está em execução
+function pa_running() {
+  if systemctl is-active --quiet pulseaudio.service; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Função para iniciar o Pipewire
+function pw-start() {
+  if pw_running; then
+    echo "O Pipewire já está em execução!"
+  else
+    systemctl start pipewire.service
+    echo "Pipewire iniciado!"
+  fi
+}
+
+# Função para parar o Pipewire
+function pw-stop() {
+  if ! pw_running; then
+    echo "O Pipewire não está em execução!"
+  else
+    systemctl stop pipewire.service
+    echo "Pipewire parado!"
+  fi
+}
+
+# Função para iniciar o Pulseaudio
+function pa-start() {
+  if pa_running; then
+    echo "O Pulseaudio já está em execução!"
+  else
+    systemctl start pulseaudio.service
+    echo "Pulseaudio iniciado!"
+  fi
+}
+
+# Função para parar o Pulseaudio
+function pa-stop() {
+  if ! pa_running; then
+    echo "O Pulseaudio não está em execução!"
+  else
+    systemctl stop pulseaudio.service
+    echo "Pulseaudio parado!"
+  fi
+}
+
+# Alias para pw-start
+alias pw=pw-start
+
+# Alias para pw-stop
+alias pw-off=pw-stop
+
+# Alias para pa-start
+alias pa=pa-start
+
+# Alias para pa-stop
+alias pa-off=pa-stop

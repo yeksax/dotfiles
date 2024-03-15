@@ -45,6 +45,15 @@ require("formatter").setup {
     typescriptreact = {
       require("formatter.filetypes.typescript").biome
     },
+    json = {
+      require("formatter.filetypes.json").biome
+    },
+    javascriptreact = {
+      require("formatter.filetypes.javascript").biome
+    },
+    javascript = {
+      require("formatter.filetypes.javascript").biome
+    },
     typescript = {
       require("formatter.filetypes.typescript").biome
     },
