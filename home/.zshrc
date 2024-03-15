@@ -26,6 +26,7 @@ function yt-dl() {
 
 # aliases
 alias gd="git diff"
+alias glog="git log --oneline"
 alias commit="git add . && git commit"
 
 alias af="albafetch"

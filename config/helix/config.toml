@@ -22,6 +22,11 @@ C-tab = "goto_last_accessed_file"
 "%" = "match_brackets"
 A-f = ":format"
 
+[keys.select]
+"%" = "match_brackets"
+"$" = "goto_line_end"
+0 = "goto_first_nonwhitespace"
+
 [keys.normal.space]
 f = ":format"
 space = ":w"
