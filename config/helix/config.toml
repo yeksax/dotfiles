@@ -20,7 +20,7 @@ C-tab = "goto_last_accessed_file"
 0 = "goto_first_nonwhitespace"
 "$" = "goto_line_end"
 "%" = "match_brackets"
-C-f = ":format"
+A-f = ":format"
 
 [keys.normal.space]
 f = ":format"
